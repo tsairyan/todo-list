@@ -22,7 +22,7 @@ addButton.addEventListener('click', function() {
     } else if (name.value === '' && errorDisplayed) {
         
     } else if (errorDisplayed){ //reset fields after
-        const item = taskFactory(name.value, desc.value, date.value, priority);
+        const item = taskFactory(name.value, desc.value, date.value, priorityOptions);
         item.addToDom();
         hideErrorMsg();
         errorDisplayed = false;

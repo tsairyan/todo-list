@@ -5,12 +5,15 @@ const taskFactory = (name, desc, date, priority) => {
 
     const editContainer = document.createElement('div');
     editContainer.classList.add('editContainer');
-
-    
-
+    const prioritySelect = document.getElementById('priority')
+    const priorityOptions = prioritySelect.options[prioritySelect.selectedIndex].text;
 
     const addToDom = () => {
      
+        //clear input fields..
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(element => element.value = '');
+
 
         const content = document.querySelector("#content");
 
@@ -82,12 +85,7 @@ const taskFactory = (name, desc, date, priority) => {
             editContainer.appendChild(submit);
             editContainer.appendChild(cancel); //which ever one goes first
     
-            cancel.addEventListener('click', function() {
-                submit.remove();
-                cancel.remove();
-                
-                el5.style.display = "block";
-            })
+        
             //2. Turn categories back into inputs... IDK if there's a more efficient way to do this...
             //creating the textboxes...
             const nameInput = document.createElement('input');
@@ -96,7 +94,12 @@ const taskFactory = (name, desc, date, priority) => {
             descInput.classList.add('descInput');
             const dateInput = document.createElement('input');
             dateInput.classList.add('dateInput');
-            dateInput.setAttribute('for', 'date')
+            dateInput.setAttribute('type', 'date')
+            //make them contain the same text as when before pressing edit
+            nameInput.value = el1.textContent;
+            descInput.value = el2.textContent;
+            dateInput.value = date;
+        
 
             const priorityInput = document.createElement('select');
             priorityInput.classList.add('priorityInput');
@@ -112,6 +115,8 @@ const taskFactory = (name, desc, date, priority) => {
             low.textContent = 'Low'; //whatever is selected, switch statement.. later
             low.setAttribute('id', 'low');
 
+            const none = document.createElement('option');
+            none.setAttribute('id', 'none');
             nameInput.textContent = name;
             descInput.textContent = desc;
             dateInput.value = date;
@@ -119,8 +124,9 @@ const taskFactory = (name, desc, date, priority) => {
             priorityInput.appendChild(high);
             priorityInput.appendChild(medium);
             priorityInput.appendChild(low);
+            priorityInput.appendChild(none);
 
-            switch (priority) {
+            switch (el4.textContent) {
                 case "High":
                 high.setAttribute("selected", "true");
                 break;
@@ -130,12 +136,18 @@ const taskFactory = (name, desc, date, priority) => {
                 case "Low":
                 low.setAttribute("selected", "true");
                 break;
+                case "":
+                none.setAttribute("selected", "true");
+                
             }
+            //Save old inputs for cancel use..?
+            
             //Remove old inputs..
-            el1.remove();
-            el2.remove();
-            el3.remove();
-            el4.remove();
+            el0.style.display = 'none';
+            el1.style.display = 'none';
+            el2.style.display = 'none';
+            el3.style.display = 'none';
+            el4.style.display = 'none';
 
             box.insertBefore(priorityInput, box.firstChild);
             box.insertBefore(dateInput, box.firstChild);
@@ -143,11 +155,53 @@ const taskFactory = (name, desc, date, priority) => {
             box.insertBefore(nameInput, box.firstChild);
   
 
+            cancel.addEventListener('click', function() {
+                priorityInput.remove();
+                dateInput.remove();
+                descInput.remove();
+                nameInput.remove();
+                console.log("cancel pressed");
+                el0.style.display = 'block';
+                el1.style.display = 'block';
+                el2.style.display = 'block';
+                el3.style.display = 'block';
+                el4.style.display = 'block';
+                submit.remove();
+                cancel.remove();
+                
+                el5.style.display = "block";
+            })
 
 
+            // 3. Submit Button function
+            submit.addEventListener('click', function() { //We remove all el0-4 input elements, use the EXISTING HIDDEN el0-4 dlements and change values
+                 el0.style.display = 'block';
+                 el1.style.display = 'block';
+                 el2.style.display = 'block';
+                 el3.style.display = 'block';
+                 el4.style.display = 'block';
 
-            //3. Submit Button function
+                 console.log(nameInput.textContent);
+                 el1.textContent = nameInput.value;
+                 el2.textContent = descInput.value;
+                 el3.textContent = dateInput.value;
+                    date = dateInput.value;
+                 
+                 const priorityOptions = priorityInput.options[priorityInput.selectedIndex].text;
+                 console.log(priorityOptions);
+                el4.textContent = priorityOptions;
 
+                priorityInput.remove();
+                dateInput.remove();
+                descInput.remove();
+                nameInput.remove();
+
+
+                submit.remove();
+                cancel.remove();
+                el5.style.display = "block";
+
+            })
 
 
         }
@@ -156,6 +210,7 @@ const taskFactory = (name, desc, date, priority) => {
     
         el5.addEventListener('click', function() {
             el5.style.display = "none";
+        
             editTask();
 
 
@@ -176,3 +231,5 @@ const taskFactory = (name, desc, date, priority) => {
 }
 
 export default taskFactory;
+
+//folders, if no date is specified...
