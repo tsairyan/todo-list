@@ -49,7 +49,7 @@ function addPage() { //takes input field.
 
  
     submit.addEventListener('click', function() {
-
+     
 
         //Displays all the lists we have (left side)
         const pageNameToCreate = pageName.value;
@@ -64,16 +64,15 @@ function addPage() { //takes input field.
         const page = document.createElement('p');
         page.textContent = pageNameToCreate;
         page.setAttribute('id', tracker);
+        page.classList.add('a' + tracker);
         tracker++;
         lists.appendChild(page);
-    
 
 
-        //when submit, we store into array......... and then create blank doc,,,, please work
+
+        //when submit, we store into array......... and then create blank doc,,,, 
 
         pages[curr] = document.querySelector('#content');
-
-        
         while (allItems.firstChild) {
             allItems.removeChild(allItems.firstChild);
         }
@@ -92,8 +91,32 @@ function addPage() { //takes input field.
             //     }
             //     allItems.appendChild(pages[curr]); 
             // })
-        
+
+            //After clicking on the element it doesnt work
             const thePages = document.querySelectorAll('p');
+            const deletePage = document.createElement('button');
+            deletePage.setAttribute('id', page.id);
+            deletePage.classList.add('delBut');
+
+            deletePage.addEventListener('click', function() {
+            
+                //console.log(curr);
+                const prev = curr - 1;
+                //console.log(prev);
+                const previous = page.previousElementSibling;
+                thePages[prev].click();
+                deletePage.remove();
+                page.remove();
+                
+
+
+                //once u switch tabs, the button event listener switches also, so you're deleting the wrong tab?? 
+                //when delete, activate the 'click' on the previous element so it switches?, remove the left side
+            
+            }); 
+            lists.appendChild(deletePage);  
+
+
             thePages.forEach(element => {
                 element.addEventListener('click', function() {
                     pages.push(document.querySelector('#content'));
@@ -102,8 +125,15 @@ function addPage() { //takes input field.
                         allItems.removeChild(allItems.firstChild);
                     }
                     allItems.appendChild(pages[curr]); 
+
+
+
+                    
                 })
             })
+        
+
+         
     });
 
 
