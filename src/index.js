@@ -1,6 +1,7 @@
 import './styles.css';
 import taskFactory from './item';
 import {errorMsg, hideErrorMsg} from './error';
+import {addPage} from './projects.js';
 const addSection = document.querySelector('.add');
 const addButton = document.querySelector('#addButton');
 
@@ -13,7 +14,6 @@ const date = document.querySelector('input[name="date"]');
 
 let errorDisplayed = false;
 addButton.addEventListener('click', function() {
-    
     const prioritySelect = document.getElementById('priority')
     const priorityOptions = prioritySelect.options[prioritySelect.selectedIndex].text;
     if (name.value === '' && !errorDisplayed) { //underneath add we create a popup stating what field is missing
@@ -34,6 +34,18 @@ addButton.addEventListener('click', function() {
 
 
 });
+
+//reset priority field when submitting
+
+const newPage = document.querySelector('#newPage');
+const content = document.querySelector('#content');
+const allItems = document.querySelector('.allItems');
+newPage.addEventListener('click', function() {
+    addPage(); 
+
+});
+
+    
 
 /*
 1. Click on it with no input, error message displayed, true

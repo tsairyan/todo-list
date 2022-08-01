@@ -14,7 +14,7 @@ const taskFactory = (name, desc, date, priority) => {
         const inputs = document.querySelectorAll('input');
         inputs.forEach(element => element.value = '');
 
-
+        prioritySelect.selectedIndex = 3;
         const content = document.querySelector("#content");
 
     
