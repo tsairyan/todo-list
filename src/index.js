@@ -6,7 +6,7 @@ const addSection = document.querySelector('.add');
 const addButton = document.querySelector('#addButton');
 
 const name = document.querySelector('input[name="name"]');
-name.style.border = "1px solid red";
+
 const desc = document.querySelector('input[name="desc"]');
 const date = document.querySelector('input[name="date"]');
 

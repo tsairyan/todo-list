@@ -9,7 +9,16 @@ body{
 }
 .all {
     display: grid;
-    grid-template-columns: 1fr 8fr;
+    grid-template-columns: 2fr 8fr;
+    grid-template-rows: 1fr 8fr;
+    height: 100%;
+}
+.title {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #content {
     height: 100%;
@@ -18,38 +27,92 @@ body{
     grid-column: 2 / 3;
 
 }
+.rightSide {
+    grid-row-start: 2;
+    grid-column: 2 / 3;
+}
 .projects {
     grid-column: 1 / 2;
-    grid-row: 1 / -1;
+    grid-row-start: 2;
     border: 1px solid blue;
     height: 100%;
 }
-.box {
-    display: grid;
-    grid-template-columns: 0.5fr repeat(5, 1fr);
-
+.titleList {
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
 }
 
+.box, .categories {
+    display: grid;
+    grid-template-columns: 0.5fr repeat(4, 1fr) 0.5fr;
+
+}
+/* .categories {
+    display: grid;
+    grid-template-columns: 0.5fr repeat(4, 1fr) 0.5fr;
+
+} */
 .el1, .nameInput {
     grid-column: 2 / 3;
 }
-.el2, .descInput {
+.el2, .descInput, .categories:nth-child(1) {
     grid-column: 3 / 4;
 }
-.el3, .dateInput {
+.el3, .dateInput, .categories:nth-child(1) {
     grid-column: 4 / 5;
 }
-.el4, .priorityInput {
+.el4, .priorityInput, .categories:nth-child(1) {
     grid-column: 5 / 6;
 }
-.editContainer {
+.editContainer, .categories:nth-child(1) {
     grid-column: 6 / 7;
 }
+.el5 {
+    grid-column: 7 / 8;
+
+}
+.el1, .el2, .el3, .el4 {
+
+    display: flex;
+    align-items: center;
+}
+.editContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .add {
     border: 1px solid red;
     height: 100%;
     grid-column: 2 / 3;
+
+}
+form {
+    display: grid;
+    grid-template-columns: 0.5fr repeat(4, 1fr) 0.5fr;
+    grid-template-rows: 1fr 15fr;
+}
+input[name="name"] {
+    grid-column: 2 /3;
+}
+input[name="desc"] {
+    grid-column: 3 / 4;
+}
+input[name="date"] {
+    grid-column: 4 / 5;
+}
+select[name="priority"] {
+    grid-column: 5 / 6;
+}
+.center {
+    grid-column: 6 / 7;
+    display: flex;
+    justify-content: center;
 }
 button {
     width: 4rem;
