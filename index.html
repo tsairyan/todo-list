@@ -9,50 +9,60 @@
 <body>
     <script src = "main.js" defer></script>
     <div class="all">
-        <div class="projects">
-            <div class="titleList">Todo Lists...</div>
-            <div class="textContent">
-                <p class = "home a0" id = '0'>Home</p>
-                <p></p>
-            </div>
-            <div class="buttons">
-                <button id = "newPage">New Page</button>
-            </div>
-           
-        </div>
-            <div class="allItems">
-                <div id="content">
-                    <div class="box">
-                        <input type="checkbox">
-                        <div class="el1">Example</div>
-                        <div class="el2">Example</div>
-                        <div class="el3">Example</div>
-                        <div class="el4">Example</div>
+                <div class="title">Tracker</div>
+                <div class="projects">
+                    <div class="titleList">Todo Lists...</div>
+                    <div class="textContent">
+                        <p class = "home a0" id = '0'>Home</p>
+                        <p></p>
                     </div>
+                    <div class="buttons">
+                        <button id = "newPage">New Page</button>
+                    </div>
+                
+                </div>
+            
+            <div class="rightSide">
+                <div class="categories">
+                    <p></p>
+                    <p>Task</p>
+                    <p>Description</p>
+                  
+                    <p>Date</p>
+                    <p>Priority</p>
+                </div>
+                    <div class="allItems">
+                      
+                        <div id="content">
+
+                            
+                        </div>
+                    </div>
+                <div class="add">
+                    <form>
+
+                        <input type="text" name = "name" placeholder = "name" required>
+
+
+                        <input type="text" name = "desc" placeholder = "description" required>
+
+<!-- 
+                        <input type="date" name = "date" placeholder = "date" required> -->
+                        <input placeholder="Date" name = "date" type="text" onfocus="(this.type='date')" id="date">
+
+                        <select name="priority" id = "priority">
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                            <option value="None" selected></option>
+                        </select>
+                        <div class="center">
+                            <button type = 'button' id = "addButton">+</button>
+                        </div>
+                    </form>
+
+                </div>
             </div>
-        </div>
-        <div class="add">
-            <form>
-                <label for="name">Name</label>
-                <input type="text" name = "name" required>
-
-                <label for="desc">Description</label>
-                <input type="text" name = "desc" required>
-
-                <label for="date">Date</label>
-                <input type="date" name = "date" required>
-
-
-                <select name="priority" id = "priority">
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
-                    <option value="None" selected></option>
-                </select>
-                <button type = 'button' id = "addButton">+</button>
-            </form>
-
-        </div>
     </div>
 </body>
 </html>
