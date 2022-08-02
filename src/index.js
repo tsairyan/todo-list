@@ -20,11 +20,13 @@ const allInputs = document.querySelectorAll('form > *');
 allInputs.forEach(element => {
     element.style.display = "none";
 });
+const openTaskContainer = document.querySelector('.openTaskContainer');
 const openTask = document.createElement('div');
-openTask.textContent = "Add Task +";
-addSection.appendChild(openTask);
-openTask.addEventListener('click', function() {
-    openTask.style.display = "none";
+openTask.textContent = "+ Add Task";
+openTask.classList.add('openTask');
+openTaskContainer.appendChild(openTask);
+openTaskContainer.addEventListener('click', function() {
+    openTaskContainer.style.display = "none";
     allInputs.forEach(element => {
         element.style.display = "block";
     });
@@ -36,8 +38,11 @@ const cancelAdd = document.querySelector("#cancelButton");
 cancelAdd.addEventListener('click', function() {
     allInputs.forEach(element => {
         element.style.display = "none";
+        
     });
-    openTask.style.display = "block";
+    openTaskContainer.style.display = "flex";
+    hideErrorMsg();
+    errorDisplayed = false;
 });
 
 //Add Button
@@ -56,17 +61,22 @@ addButton.addEventListener('click', function() {
         item.addToDom();
         hideErrorMsg();
         errorDisplayed = false;
+        allInputs.forEach(element => {
+            element.style.display = "none";
+        });
+        openTaskContainer.style.display = "flex";
     } else {
         const item = taskFactory(name.value, desc.value, date.value, priorityOptions);
 
         item.addToDom();
         errorDisplayed = false;
+        allInputs.forEach(element => {
+            element.style.display = "none";
+        });
+        openTaskContainer.style.display = "flex";   
     }
 
-    allInputs.forEach(element => {
-        element.style.display = "none";
-    });
-    openTask.style.display = "block";
+    
 
 });
 

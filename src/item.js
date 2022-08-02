@@ -10,6 +10,7 @@ const taskFactory = (name, desc, date, priority) => {
 
     const addToDom = () => {
      
+      
         //clear input fields..
         const inputs = document.querySelectorAll('input');
         inputs.forEach(element => element.value = '');
@@ -32,7 +33,9 @@ const taskFactory = (name, desc, date, priority) => {
         box.setAttribute('id', count);
 
         content.appendChild(box);
-    
+        const checkboxContainer = document.createElement('div');
+        checkboxContainer.classList.add('checkboxContainer');
+        box.appendChild(checkboxContainer);
         //Subcategories el0 = checkbox, el1 = name, el2 = desc, el3 = date, el4 = priority, el5 = edit
         const el0 = document.createElement('input');
         el0.setAttribute('type', 'checkbox');
@@ -54,7 +57,7 @@ const taskFactory = (name, desc, date, priority) => {
        
 
 
-        box.appendChild(el0);
+        checkboxContainer.appendChild(el0);
         box.appendChild(el1);
         box.appendChild(el2);
         box.appendChild(el3);
@@ -143,11 +146,13 @@ const taskFactory = (name, desc, date, priority) => {
             //Save old inputs for cancel use..?
             
             //Remove old inputs..
+
             el0.style.display = 'none';
             el1.style.display = 'none';
             el2.style.display = 'none';
             el3.style.display = 'none';
             el4.style.display = 'none';
+            checkboxContainer.style.display = "none";
 
             box.insertBefore(priorityInput, box.firstChild);
             box.insertBefore(dateInput, box.firstChild);
@@ -162,25 +167,28 @@ const taskFactory = (name, desc, date, priority) => {
                 nameInput.remove();
                 console.log("cancel pressed");
                 el0.style.display = 'block';
-                el1.style.display = 'block';
-                el2.style.display = 'block';
-                el3.style.display = 'block';
-                el4.style.display = 'block';
+                el1.style.display = 'flex';
+                el2.style.display = 'flex';
+                el3.style.display = 'flex';
+                el4.style.display = 'flex';
+                checkboxContainer.style.display = "flex";
                 submit.remove();
                 cancel.remove();
                 
                 el5.style.display = "block";
+
+                
             })
 
 
             // 3. Submit Button function
             submit.addEventListener('click', function() { //We remove all el0-4 input elements, use the EXISTING HIDDEN el0-4 dlements and change values
                  el0.style.display = 'block';
-                 el1.style.display = 'block';
-                 el2.style.display = 'block';
-                 el3.style.display = 'block';
-                 el4.style.display = 'block';
-
+                 el1.style.display = 'flex';
+                 el2.style.display = 'flex';
+                 el3.style.display = 'flex';
+                 el4.style.display = 'flex';
+                 checkboxContainer.style.display = "flex";
                  console.log(nameInput.textContent);
                  el1.textContent = nameInput.value;
                  el2.textContent = descInput.value;
