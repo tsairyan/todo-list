@@ -112,17 +112,24 @@ function addPage() { //takes input field.
             deletePage.classList.add('delBut');
 
             deletePage.addEventListener('click', function() {
-            
-                curr = deletePage.previousElementSibling.previousElementSibling.previousElementSibling.id;
-                // console.log(curr);
-                deletePage.previousElementSibling.remove();
+                if (curr !== deletePage.id) {
+                    deletePage.previousElementSibling.click();
+                } 
+
+                    curr = deletePage.previousElementSibling.previousElementSibling.previousElementSibling.id;
+                    // console.log(curr);
+                    deletePage.previousElementSibling.remove();
                     deletePage.remove();
-                    while (allItems.firstChild) {
-                        allItems.removeChild(allItems.firstChild);
-                    }
-                    console.log(pages[curr]);
-                    allItems.appendChild(pages[curr]); 
-                    
+                        while (allItems.firstChild) {
+                            allItems.removeChild(allItems.firstChild);
+                        }
+                        console.log(pages[curr]);
+                        allItems.appendChild(pages[curr]); 
+                        
+                
+
+
+             
                 
 
                 
