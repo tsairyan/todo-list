@@ -227,6 +227,7 @@ const taskFactory = (name, desc, date, priority) => {
     
     }
 
+
     return {name, desc, date, priority, addToDom};
 }
 
