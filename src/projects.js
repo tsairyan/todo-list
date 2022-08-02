@@ -66,6 +66,19 @@ function addPage() { //takes input field.
         page.setAttribute('id', tracker);
         page.classList.add('a' + tracker);
         tracker++;
+
+        // page.addEventListener('click', function() {
+        //     if (!pages.includes(document.querySelector('#content'))) {
+        //         pages.push(document.querySelector('#content'));
+        //     }
+                
+        //         curr = page.id;
+        //         while (allItems.firstChild) {
+        //             allItems.removeChild(allItems.firstChild);
+        //         }
+        //         allItems.appendChild(pages[curr]); 
+        // });
+
         lists.appendChild(page);
 
 
@@ -79,7 +92,7 @@ function addPage() { //takes input field.
         const temp = document.createElement('div');
         temp.setAttribute('id', 'content');
         allItems.appendChild(temp);
-        curr++;
+        curr = pages.length;
 
         
         
@@ -100,13 +113,19 @@ function addPage() { //takes input field.
 
             deletePage.addEventListener('click', function() {
             
-                //console.log(curr);
-                const prev = curr - 1;
-                //console.log(prev);
-                const previous = page.previousElementSibling;
-                thePages[prev].click();
-                deletePage.remove();
-                page.remove();
+                curr = deletePage.previousElementSibling.previousElementSibling.previousElementSibling.id;
+                // console.log(curr);
+                deletePage.previousElementSibling.remove();
+                    deletePage.remove();
+                    while (allItems.firstChild) {
+                        allItems.removeChild(allItems.firstChild);
+                    }
+                    console.log(pages[curr]);
+                    allItems.appendChild(pages[curr]); 
+                    
+                
+
+                
                 
 
 
@@ -116,10 +135,16 @@ function addPage() { //takes input field.
             }); 
             lists.appendChild(deletePage);  
 
+            // const delBut = document.createElement('button');
+            // lists.appendChild(delBut);
+
 
             thePages.forEach(element => {
                 element.addEventListener('click', function() {
-                    pages.push(document.querySelector('#content'));
+                    if (!pages.includes(document.querySelector('#content'))) {
+                        pages.push(document.querySelector('#content'));
+                    }
+                    
                     curr = element.id;
                     while (allItems.firstChild) {
                         allItems.removeChild(allItems.firstChild);
@@ -130,12 +155,30 @@ function addPage() { //takes input field.
 
                     
                 })
-            })
-        
 
+              
+                
+            
+
+            })
+           
+        
+            // const all = document.querySelectorAll('.textContent button');
+            // all.forEach(element => {
+            //     element.addEventListener('click', function() {
+            //         element.previousElementSibling.remove();
+            //         element.remove();
+        
+            //         pages[curr - 1].click();
+            //         curr -= 1;
+        
+                    
+            //     });
+            // })
          
     });
 
+    // var arr = Array.prototype.slice.call(thePages);
 
 }
 
@@ -148,9 +191,10 @@ function addPage() { //takes input field.
 
 
 const homePage = document.querySelector('.home');
+
 homePage.setAttribute('id', '0');
 homePage.addEventListener('click', function() {
-   console.log(homePage.id);
+//    console.log(homePage.id);
 
 
  
