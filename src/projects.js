@@ -18,7 +18,7 @@ function addPage() { //takes input field.
     const pageName = document.createElement('input');
     const submit = document.createElement('button');
     submit.classList.add('submitPage');
-    submit.textContent = "Add Page";
+    submit.textContent = "Add";
     const cancel = document.createElement('button');
     cancel.textContent = "Cancel";
     cancel.classList.add('cancelPage');
@@ -26,9 +26,9 @@ function addPage() { //takes input field.
     
     newPageButton.style.display = "none";
     buttonSection.appendChild(pageName);
-    buttonSection.appendChild(submit);
-    buttonSection.appendChild(cancel);
 
+    buttonSection.appendChild(cancel);
+    buttonSection.appendChild(submit);
 
     
     //when pressing a new page, stores the previous .box and creates a blank sheet
@@ -79,8 +79,7 @@ function addPage() { //takes input field.
         //         allItems.appendChild(pages[curr]); 
         // });
 
-        lists.appendChild(page);
-
+       
 
 
         //when submit, we store into array......... and then create blank doc,,,, 
@@ -106,19 +105,18 @@ function addPage() { //takes input field.
             // })
 
             //After clicking on the element it doesnt work
-            const thePages = document.querySelectorAll('.textContent p');
             const deletePage = document.createElement('button');
             deletePage.setAttribute('id', page.id);
             deletePage.classList.add('delBut');
 
             deletePage.addEventListener('click', function() {
                 if (curr !== deletePage.id) {
-                    deletePage.previousElementSibling.click();
+                    deletePage.nextElementSibling.click();
                 } 
 
-                    curr = deletePage.previousElementSibling.previousElementSibling.previousElementSibling.id;
+                    curr = deletePage.previousElementSibling.id;
                     // console.log(curr);
-                    deletePage.previousElementSibling.remove();
+                    deletePage.nextElementSibling.remove();
                     deletePage.remove();
                         while (allItems.firstChild) {
                             allItems.removeChild(allItems.firstChild);
@@ -141,6 +139,8 @@ function addPage() { //takes input field.
             
             }); 
             lists.appendChild(deletePage);  
+            lists.appendChild(page);
+            const thePages = document.querySelectorAll('.textContent p');
 
             // const delBut = document.createElement('button');
             // lists.appendChild(delBut);
