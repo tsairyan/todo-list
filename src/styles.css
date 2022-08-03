@@ -24,7 +24,7 @@ body{
     height: 100%;
     display: grid;
     grid-auto-rows: repeat(autofit, minmax(5rem, 1fr));
-    gap: 1rem;
+    gap: 0.75rem;
     grid-column: 2 / 3;
 
 
@@ -33,9 +33,7 @@ input[type="checkbox"] {
     
 
 }
-.el0 {
-    border: 2px solid blue;
-}
+
 .rightSide {
     grid-row-start: 2;
     grid-column: 2 / 3;
@@ -113,12 +111,14 @@ p {
     grid-template-columns: 3rem repeat(5, 1fr);
 
 }
+.box {
+    height: 2rem;
+}
 form{
     width: 100%;
 }
 .categories{
     width: 100%;
-    border: 2px solid black;
 }
 /* .categories {
     display: grid;
@@ -146,14 +146,18 @@ form{
 } */
 .el1, .el2, .el3, .el4 {
 
-    /* display: flex; */
-    /* align-items: center; */
+    display: flex;
+    align-items: center;
     word-break: break-all;
 }
 .editContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#addButton, #cancelButton {
+    height: 2rem;
+    width: 2rem;
 }
 
 /* .bottomHalf {
@@ -175,19 +179,19 @@ form {
     grid-template-rows: 2rem 2rem 15fr;
 }
 
-input[name="name"] {
+input[name="name"], .nameInput{
     grid-column: 2 /3;
 
 }
-input[name="desc"] {
+input[name="desc"], .descInput {
     grid-column: 3 / 4;
 
 }
-input[name="date"] {
+input[name="date"], .dateInput {
     grid-column: 4 / 5;
 
 }
-select[name="priority"] {
+select[name="priority"], .priorityInput{
     grid-column: 5 / 6;
 }
 .center {
@@ -195,10 +199,7 @@ select[name="priority"] {
     display: flex;
     justify-content: center;
 }
-button {
-    /* width: 4rem; */
-    height: 2rem;
-}
+
 .errorMsg{
     grid-row: 2 / 3;
     grid-column: 2 / 3;

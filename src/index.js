@@ -20,6 +20,7 @@ const allInputs = document.querySelectorAll('form > *');
 allInputs.forEach(element => {
     element.style.display = "none";
 });
+const center = document.querySelector('.center');
 const openTaskContainer = document.querySelector('.openTaskContainer');
 const openTask = document.createElement('div');
 openTask.textContent = "+ Add Task";
@@ -30,6 +31,7 @@ openTaskContainer.addEventListener('click', function() {
     allInputs.forEach(element => {
         element.style.display = "block";
     });
+    center.style.display = "flex";
 });
 
 
