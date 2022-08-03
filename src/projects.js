@@ -106,7 +106,7 @@ function addPage() { //takes input field.
             // })
 
             //After clicking on the element it doesnt work
-            const thePages = document.querySelectorAll('p');
+            const thePages = document.querySelectorAll('.textContent p');
             const deletePage = document.createElement('button');
             deletePage.setAttribute('id', page.id);
             deletePage.classList.add('delBut');

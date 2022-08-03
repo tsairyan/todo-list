@@ -43,6 +43,7 @@ cancelAdd.addEventListener('click', function() {
         
     });
     openTaskContainer.style.display = "flex";
+
     hideErrorMsg();
     errorDisplayed = false;
 });
