@@ -29,17 +29,20 @@ body{
 
 
 }
-input[type="checkbox"] {
-    
 
+.el5 {
+    height: 2rem;
+    width: 2rem;
 }
-
 .rightSide {
     grid-row-start: 2;
     grid-column: 2 / 3;
 }
 
-
+.submit, .cancel {
+    height: 2rem;
+    width: 2rem;
+}
 /* Left Side */
 .projects {
     grid-column: 1 / 2;
@@ -67,7 +70,10 @@ input[type="checkbox"] {
 }
 p {
     word-break: break-all;
+    height: 2rem;
+    font-size: 1.5rem;
 }
+
 
 .buttons {
     display: flex;
