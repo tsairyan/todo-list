@@ -108,6 +108,7 @@ function addPage() { //takes input field.
             const deletePage = document.createElement('button');
             deletePage.setAttribute('id', page.id);
             deletePage.classList.add('delBut');
+            deletePage.textContent = "x";
 
             deletePage.addEventListener('click', function() {
                 if (curr !== deletePage.id) {
