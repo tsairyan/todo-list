@@ -23,12 +23,20 @@ function addPage() { //takes input field.
     cancel.textContent = "Cancel";
     cancel.classList.add('cancelPage');
 
-    
-    newPageButton.style.display = "none";
-    buttonSection.appendChild(pageName);
+    const inputContainer = document.createElement('div');
+    inputContainer.classList.add('inputContainer');
+    buttonSection.appendChild(inputContainer);
+    inputContainer.appendChild(pageName);
 
-    buttonSection.appendChild(cancel);
-    buttonSection.appendChild(submit);
+
+    newPageButton.style.display = "none";
+    
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('pageButtons');
+    buttonSection.appendChild(buttonContainer);
+    buttonContainer.appendChild(cancel);
+    buttonContainer.appendChild(submit);
 
     
     //when pressing a new page, stores the previous .box and creates a blank sheet
@@ -37,9 +45,9 @@ function addPage() { //takes input field.
 
     //Cancel event listener
     cancel.addEventListener('click', function() {
-        submit.remove();
-        cancel.remove();
-        pageName.remove();
+        buttonContainer.remove();
+
+        inputContainer.remove();
         newPageButton.style.display = "block";
     })
 
@@ -53,9 +61,9 @@ function addPage() { //takes input field.
 
         //Displays all the lists we have (left side)
         const pageNameToCreate = pageName.value;
-        submit.remove();
-        cancel.remove();
-        pageName.remove();
+        buttonContainer.remove();
+
+        inputContainer.remove();
         newPageButton.style.display = "block"; 
         //add a section that shows the list of displays later... adds the pageNameToCreate to display.., clickable i guess
 

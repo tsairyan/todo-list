@@ -34,7 +34,7 @@ openTaskContainer.addEventListener('click', function() {
     center.style.display = "flex";
 });
 
-
+const prioritySelect = document.getElementById('priority')
 //Cancel Button
 const cancelAdd = document.querySelector("#cancelButton");
 cancelAdd.addEventListener('click', function() {
@@ -43,8 +43,14 @@ cancelAdd.addEventListener('click', function() {
         
     });
     openTaskContainer.style.display = "flex";
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(element => element.value = '');
 
-    hideErrorMsg();
+    prioritySelect.value = 'None'; 
+    if (errorDisplayed == true) {
+        hideErrorMsg();
+
+    }
     errorDisplayed = false;
 });
 

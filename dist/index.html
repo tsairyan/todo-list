@@ -9,68 +9,49 @@
 <body>
     <script src = "main.js" defer></script>
     <div class="all">
-                <div class="title">Tracker</div>
-                <div class="projects">
-                    <div class="titleList">Pages</div>
-                    <div class="textContent">
-                        <p></p>
-                        <p class = "home a0" id = '0'>Home</p>
-                        
-                    </div>
-                    <div class="buttons">
-                        <button id = "newPage">+</button>
-                    </div>
-                
-                </div>
-            
-            <div class="rightSide">
-                <div class="categories">
-                    <p></p>
-                    <p>Task</p>
-                    <p>Description</p>
-                  
-                    <p>Date</p>
-                    <p>Priority</p>
-                </div>
-                    <div class="allItems">
-                      
-                        <div id="content">
-
-                            
-                        </div>
-                    </div>
-                <div class="add">
-                    <div class="openTaskContainer">
-
-                    </div>
-                    <!-- <div class="bottomHalf"> -->
-                        <form>
-
-                            <input type="text" name = "name" placeholder = "name" required>
-
-
-                            <input type="text" name = "desc" placeholder = "description" required>
-
-    <!-- 
-                            <input type="date" name = "date" placeholder = "date" required> -->
-                            <input placeholder="Date" name = "date" type="text" onfocus="(this.type='date')" id="date">
-
-                            <select name="priority" id = "priority">
-                                <option value="High">High</option>
-                                <option value="Medium">Medium</option>
-                                <option value="Low">Low</option>
-                                <option value="None" selected></option>
-                            </select>
-                            <div class="center">
-                                <button type = 'button' id = "addButton">+</button>
-                                <button type = 'button' id = "cancelButton">x</button>
-                            </div>
-                            <div class="errorMsg"></div>
-                        </form>
-                        
-                    <!-- </div> -->
-                </div>
+        <div class="title">Tracker</div>
+        <div class="projects">
+            <div class="titleList">Pages</div>
+            <div class="textContent">   
+                <span></span>
+                <p class = "home a0" id = '0'>Home</p>
             </div>
+            <div class="buttons">
+                <button id = "newPage">+</button>
+            </div>
+        </div>
+        <div class="rightSide">
+            <div class="categories">
+                <p></p>
+                <p>Task</p>
+                <p>Description</p>
+                <p>Date</p>
+                <p>Priority</p>
+            </div>
+        <div class="allItems">
+            <div id="content"></div>
+        </div>
+        <div class="add">
+            <div class="openTaskContainer"></div>
+                <form>
+                    <input type="text" name = "name" placeholder = "name" required>
+                    <input type="text" name = "desc" placeholder = "description" required>
+                    <input placeholder="Date" name = "date" type="text" onfocus="(this.type='date')" id="date">
+                    <select name="priority" id = "priority">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                        <option value="None" selected></option>
+                    </select>
+                    <div class="center">
+                        <button type = 'button' id = "cancelButton"></button>
+                        <button type = 'button' id = "addButton"></button>
+                    </div>
+                    <div class="errorMsg"></div>
+                </form>
+                    
+            </div>
+        </div>
     </div>
 </body>
 </html>

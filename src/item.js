@@ -15,7 +15,7 @@ const taskFactory = (name, desc, date, priority) => {
         const inputs = document.querySelectorAll('input');
         inputs.forEach(element => element.value = '');
 
-        prioritySelect.selectedIndex = 3;
+        prioritySelect.value = 'None';
         const content = document.querySelector("#content");
 
     
@@ -85,9 +85,9 @@ const taskFactory = (name, desc, date, priority) => {
             cancel.classList.add('cancel');
             cancel.textContent = "cancel";
     
-            editContainer.appendChild(submit);
+            
             editContainer.appendChild(cancel); //which ever one goes first
-    
+            editContainer.appendChild(submit);
         
             //2. Turn categories back into inputs... IDK if there's a more efficient way to do this...
             //creating the textboxes...
