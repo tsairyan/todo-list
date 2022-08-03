@@ -52,9 +52,16 @@ const taskFactory = (name, desc, date, priority) => {
   
         const el5 = document.createElement('button');
         el5.classList.add('el5');
-        el5.textContent = "edit";
 
-       
+
+        const editSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        editSVG.setAttribute('height', '24');    
+        editSVG.setAttribute('width', '24');
+        el5.appendChild(editSVG);
+        const newPath2 = document.createElementNS("http://www.w3.org/2000/svg","path"); 
+        newPath2.setAttribute('d', "M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z");
+        editSVG.appendChild(newPath2);
+     
 
 
         checkboxContainer.appendChild(el0);
@@ -80,12 +87,26 @@ const taskFactory = (name, desc, date, priority) => {
     
             const submit = document.createElement('button');
             submit.classList.add('submit');
-            submit.textContent = "submit";
+            const submitSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            submitSVG.setAttribute('height', '24');    
+            submitSVG.setAttribute('width', '24');
+            submit.appendChild(submitSVG);
+            const newPath = document.createElementNS("http://www.w3.org/2000/svg","path"); 
+            newPath.setAttribute('d', "m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4Z");
+            submitSVG.appendChild(newPath);
             const cancel = document.createElement('button');
             cancel.classList.add('cancel');
-            cancel.textContent = "cancel";
-    
             
+            const cancelSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            cancelSVG.setAttribute('height', '24');    
+            cancelSVG.setAttribute('width', '24');
+            const newPath1 = document.createElementNS("http://www.w3.org/2000/svg","path"); 
+            newPath1.setAttribute('d', "M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z");
+            cancelSVG.appendChild(newPath1);
+            cancel.appendChild(cancelSVG);
+
+
+
             editContainer.appendChild(cancel); //which ever one goes first
             editContainer.appendChild(submit);
         

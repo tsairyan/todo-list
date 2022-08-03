@@ -18,11 +18,29 @@ function addPage() { //takes input field.
     const pageName = document.createElement('input');
     const submit = document.createElement('button');
     submit.classList.add('submitPage');
-    submit.textContent = "Add";
     const cancel = document.createElement('button');
-    cancel.textContent = "Cancel";
     cancel.classList.add('cancelPage');
 
+
+    const submitSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    submitSVG.setAttribute('height', '24');    
+    submitSVG.setAttribute('width', '24');
+    submit.appendChild(submitSVG);
+    const newPath = document.createElementNS("http://www.w3.org/2000/svg","path"); 
+    newPath.setAttribute('d', "m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4Z");
+    submitSVG.appendChild(newPath);
+
+    
+    const cancelSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    cancelSVG.setAttribute('height', '24');    
+    cancelSVG.setAttribute('width', '24');
+    const newPath1 = document.createElementNS("http://www.w3.org/2000/svg","path"); 
+    newPath1.setAttribute('d', "M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z");
+    cancelSVG.appendChild(newPath1);
+    cancel.appendChild(cancelSVG);
+
+
+    
     const inputContainer = document.createElement('div');
     inputContainer.classList.add('inputContainer');
     buttonSection.appendChild(inputContainer);
@@ -48,7 +66,7 @@ function addPage() { //takes input field.
         buttonContainer.remove();
 
         inputContainer.remove();
-        newPageButton.style.display = "block";
+        newPageButton.style.display = "flex";
     })
 
 
@@ -64,7 +82,7 @@ function addPage() { //takes input field.
         buttonContainer.remove();
 
         inputContainer.remove();
-        newPageButton.style.display = "block"; 
+        newPageButton.style.display = "flex"; 
         //add a section that shows the list of displays later... adds the pageNameToCreate to display.., clickable i guess
 
 
@@ -116,7 +134,18 @@ function addPage() { //takes input field.
             const deletePage = document.createElement('button');
             deletePage.setAttribute('id', page.id);
             deletePage.classList.add('delBut');
-            deletePage.textContent = "x";
+
+            const cancelSVG1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            cancelSVG1.setAttribute('height', '20');    
+            cancelSVG1.setAttribute('width', '20');
+            const newPath3 = document.createElementNS("http://www.w3.org/2000/svg","path"); 
+            newPath3.setAttribute('d', "M6.062 15 5 13.938 8.938 10 5 6.062 6.062 5 10 8.938 13.938 5 15 6.062 11.062 10 15 13.938 13.938 15 10 11.062Z");
+            cancelSVG1.appendChild(newPath3);
+
+
+            deletePage.appendChild(cancelSVG1);
+
+
 
             deletePage.addEventListener('click', function() {
                 if (curr !== deletePage.id) {
@@ -207,7 +236,11 @@ function addPage() { //takes input field.
 
 
 const homePage = document.querySelector('.home');
+const homeIcon = document.querySelector('span svg');
+homeIcon.addEventListener('click', function() {
+    homePage.click();
 
+})
 homePage.setAttribute('id', '0');
 homePage.addEventListener('click', function() {
 //    console.log(homePage.id);

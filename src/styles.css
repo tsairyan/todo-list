@@ -4,11 +4,16 @@
     --bg: #0b0b0f;
     --grey: #696c80;
 }
-
+svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 body{ 
     color: var(--grey);
     height: 100vh;
-    background-color: var(--bg);
+    /* background-color: var(--bg); */
+    background-color: white;
     background-size: cover;
 
 }
@@ -18,7 +23,9 @@ body{
     grid-template-rows: 5rem 8fr;
     height: 100%;
 }
-
+svg {
+    fill: var(--grey);
+}
 .title {
     grid-row: 1 / 2;
     grid-column: 1 / 2;
@@ -43,12 +50,24 @@ p {
     background-color: lightgrey;
     cursor: pointer;
 }
+.textContent p {
+    display: flex;
+    align-items: center;
+}
+span {
+    display: flex;
+
+    align-items: center;
+}
 #newPage {
     height: 2rem;
     width: 8rem;
     border-radius: 5rem;
     border: 0px;
     background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #newPage:hover {
     background-color: lightgrey;
@@ -70,6 +89,9 @@ p {
     background-color: transparent;
     border: 0px;
     border-radius: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .delBut:hover {
     cursor: pointer;
@@ -163,7 +185,7 @@ select[name="priority"], .priorityInput{
 .center {
     grid-column: 6 / 7;
     display: flex;
-    justify-content: center;
+    justify-content: start;
 }
 .errorMsg{
     grid-row: 2 / 3;
@@ -172,7 +194,7 @@ select[name="priority"], .priorityInput{
 /* right side (edit and add) */
 .editContainer {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 }
 #addButton, #cancelButton {
@@ -180,10 +202,16 @@ select[name="priority"], .priorityInput{
     width: 2rem;
     background-color: transparent;
     border: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .submit, .cancel {
     height: 2rem;
     width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .add {
     border: 1px solid red;
@@ -191,11 +219,6 @@ select[name="priority"], .priorityInput{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-#addButton {
-   background-image: url(./assets/images/done_FILL0_wght400_GRAD0_opsz24.png);
-   background-repeat: no-repeat;
-   background-position: center;
 }
 #addButton:hover {
     background-color: #323232;
@@ -210,6 +233,9 @@ select[name="priority"], .priorityInput{
 .el5 {
     height: 2rem;
     width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
