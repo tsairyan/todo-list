@@ -9,9 +9,9 @@
 <body>
     <script src = "main.js" defer></script>
     <div class="all">
-        <div class="title">Tracker</div>
+        <div class="title"><span style='color: #FFFFFF;'>To</span>Do</div>
         <div class="projects">
-            <div class="titleList">Pages</div>
+            <div class="titleList"></div>
             <div class="textContent">   
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M4 21V9l8-6 8 6v12h-6v-7h-4v7Zm2-2h2v-7h8v7h2v-9l-6-4.5L6 10Zm6-6.75Z"/></svg>
@@ -31,6 +31,7 @@
                 <p>Description</p>
                 <p>Date</p>
                 <p>Priority</p>
+                <p></p>
             </div>
         <div class="allItems">
             <div id="content"></div>
@@ -40,12 +41,14 @@
                 <form>
                     <input type="text" name = "name" placeholder = "name" required>
                     <input type="text" name = "desc" placeholder = "description" required>
-                    <input placeholder="Date" name = "date" type="text" onfocus="(this.type='date')" id="date">
+                    <input placeholder="date" name = "date" type="text" onfocus="(this.type='date')" id="date">
                     <select name="priority" id = "priority">
-                        <option value="High">High</option>
-                        <option value="Medium">Medium</option>
+                        <option value="hide" disable hidden selected>priority</option>
+                        <option value="None"></option>
                         <option value="Low">Low</option>
-                        <option value="None" selected></option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        
                     </select>
                     <div class="center">
                         <button type = 'button' id = "cancelButton">
