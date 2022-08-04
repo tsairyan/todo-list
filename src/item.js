@@ -40,8 +40,32 @@ const taskFactory = (name, desc, date, priority) => {
         checkboxContainer.classList.add('checkboxContainer');
         box.appendChild(checkboxContainer);
         //Subcategories el0 = checkbox, el1 = name, el2 = desc, el3 = date, el4 = priority, el5 = edit
-        const el0 = document.createElement('input');
-        el0.setAttribute('type', 'checkbox');
+        const el0 = document.createElement('div');
+        el0.classList.add('cbContainer');
+        el0.style.border = "1px solid rgb(179, 0, 255)";
+        el0.style.borderRadius = "2rem";
+
+        const el1SVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        el1SVG.setAttribute('height', '20');    
+        el1SVG.setAttribute('width', '20');
+        el0.appendChild(el1SVG);
+        const path = document.createElementNS("http://www.w3.org/2000/svg","path"); 
+        path.setAttribute('d', "M8.333 13.729 5 10.396l1.062-1.063 2.271 2.271L13.938 6 15 7.062Z");
+        el1SVG.appendChild(path);
+        el1SVG.style.opacity = "0";
+
+
+        el0.addEventListener('mouseenter', function (){
+            el1SVG.style.opacity = "100";
+            el0.style.cursor = "pointer";
+        })
+        el0.addEventListener('mouseleave', function (){
+            el0.style.cursor = "default";
+
+            el1SVG.style.opacity = "0";
+        })
+
+
 
         const el1 = document.createElement('div');
         el1.classList.add('el1');
@@ -65,6 +89,7 @@ const taskFactory = (name, desc, date, priority) => {
         newPath2.setAttribute('d', "M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z");
         editSVG.appendChild(newPath2);
      
+
 
 
         checkboxContainer.appendChild(el0);
@@ -126,7 +151,10 @@ const taskFactory = (name, desc, date, priority) => {
             descInput.classList.add('descInput');
             const dateInput = document.createElement('input');
             dateInput.classList.add('dateInput');
-            dateInput.setAttribute('type', 'date')
+            dateInput.setAttribute('type', 'text');
+            dateInput.setAttribute('placeholder', "date");
+            dateInput.setAttribute('onfocus', 'this.type="date"');
+
             //make them contain the same text as when before pressing edit
             nameInput.value = el1.textContent;
             descInput.value = el2.textContent;
@@ -256,6 +284,7 @@ const taskFactory = (name, desc, date, priority) => {
             box.remove();
         
         });
+
     
     
     

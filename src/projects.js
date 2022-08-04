@@ -188,12 +188,21 @@ function addPage() { //takes input field.
 
 
             thePages.forEach(element => {
+
                 element.addEventListener('click', function() {
                     if (!pages.includes(document.querySelector('#content'))) {
                         pages.push(document.querySelector('#content'));
                     }
-                    
+         
+
+
+
+                    thePages[curr].style.color = "white";
+
                     curr = element.id;
+                    
+                    thePages[curr].style.color = "rgb(179, 0, 255)";
+
                     while (allItems.firstChild) {
                         allItems.removeChild(allItems.firstChild);
                     }

@@ -115,3 +115,5 @@ newPage.addEventListener('click', function() {
     Click on it again with no input, error message previously displayed, goes to else
 
 */
+const home = document.querySelector('.home');
+home.style.color = 'rgb(179, 0, 255)';

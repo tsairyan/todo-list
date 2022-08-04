@@ -76,7 +76,7 @@ p {
     grid-template-columns: 1fr 8fr;
 }
 .textContent p:hover {
-    background-color: rgb(179, 0, 255);
+    background-color: #242424;
     cursor: pointer;
 }
 .textContent p{
@@ -182,11 +182,11 @@ option {
     color: white;
 }
 
-.cancelPage, .submitPage {
+.cancelPage, .submitPage, .cancel, .submit {
     background-color: transparent;
     border: 0px;
 }
-.cancelPage:hover, .submitPage:hover {
+.cancelPage:hover, .submitPage:hover, .cancel:hover, .submit:hover {
     background-color: rgb(179, 0, 255);
     cursor: pointer;
 }
@@ -236,6 +236,12 @@ option {
 .box {
     height: 3rem;
     font-size: 1.25rem;
+    border-radius: 10px;
+    border-left: 5px solid rgb(179, 0, 255);
+}
+.box:hover {
+    background-color: #242424;
+   
 }
 form{
     width: 100%;
@@ -248,6 +254,8 @@ form{
     justify-content: center;
     align-items: center;
 }
+
+
 .el1, .el2, .el3, .el4 {
     display: flex;
     align-items: center;
@@ -285,6 +293,8 @@ input[type="date"]:focus::-webkit-calendar-picker-indicator {
 }
 select[name="priority"], .priorityInput{
     grid-column: 5 / 6;
+    padding: 0.5rem;
+
 }
 .center {
     grid-column: 6 / 7;
@@ -332,7 +342,7 @@ select[name="priority"], .priorityInput{
     height: 100%;
     display: grid;
     grid-auto-rows: repeat(autofit, minmax(5rem, 1fr));
-    gap: 0.75rem;
+
     grid-column: 2 / 3;
 }
 .el5 {
@@ -341,8 +351,18 @@ select[name="priority"], .priorityInput{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
+    border: 0px;
 }
+/* .el5:hover {
+    background-color: rgb(179, 0, 255);
+    cursor: pointer;
 
+} */
+.el5 svg:hover {
+    fill: rgb(179, 0, 255);
+    cursor: pointer;
+}
 
 .categories p {
     font-size: 14px;
