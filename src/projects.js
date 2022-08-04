@@ -16,6 +16,7 @@ function addPage() { //takes input field.
     const newPageButton = document.querySelector('#newPage');
     
     const pageName = document.createElement('input');
+    
     const submit = document.createElement('button');
     submit.classList.add('submitPage');
     const cancel = document.createElement('button');
@@ -45,6 +46,8 @@ function addPage() { //takes input field.
     inputContainer.classList.add('inputContainer');
     buttonSection.appendChild(inputContainer);
     inputContainer.appendChild(pageName);
+    pageName.focus();
+    pageName.setAttribute('placeholder', 'enter page name');
 
 
     newPageButton.style.display = "none";

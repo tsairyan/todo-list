@@ -1,19 +1,38 @@
+@import url('https://rsms.me/inter/inter.css');
+
 * {
     margin: 0;
     padding: 0;
     --bg: #0b0b0f;
     --grey: #696c80;
+    --secondary: color: rgb(179, 0, 255);
 }
+@font-face {
+    font-family: basetica;
+    src: url(./assets/fonts/Basetica-Med.otf);
+}
+@font-face {
+    font-family: inter;
+    src: url(./assets/fonts/Inter-Light.otf)
+}
+@font-face {
+    font-family: gotham;
+    src: url(./assets/fonts/Gotham-Light.otf);
+}
+/* @font-face {
+    font-family: epilogue;
+    src: url(./assets/fonts/);
+} */
 svg {
     display: flex;
     justify-content: center;
     align-items: center;
+    fill: white;
 }
 body{ 
-    color: var(--grey);
+    color: white;
     height: 100vh;
-    /* background-color: var(--bg); */
-    background-color: white;
+    background-color: #121212;
     background-size: cover;
 
 }
@@ -22,16 +41,26 @@ body{
     grid-template-columns: 2fr 8fr;
     grid-template-rows: 5rem 8fr;
     height: 100%;
+
+    font-family: inter;
+    font-size: 14px;
+    
+
 }
-svg {
-    fill: var(--grey);
-}
+
 .title {
+    font-family: inter; 
     grid-row: 1 / 2;
     grid-column: 1 / 2;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: rgb(179, 0, 255);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -1px;
+    background-color: #121212;
+
 }
 
 p {
@@ -47,16 +76,28 @@ p {
     grid-template-columns: 1fr 8fr;
 }
 .textContent p:hover {
-    background-color: lightgrey;
+    background-color: rgb(179, 0, 255);
     cursor: pointer;
 }
-.textContent p {
+.textContent p{
+    display: flex;
+    align-items: start;
+    
+    height: 2rem;
+
+}
+
+.textContent span {
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: center;
 }
-span {
+span svg {
+    
+}
+.home {
     display: flex;
-
     align-items: center;
 }
 #newPage {
@@ -68,53 +109,87 @@ span {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 1rem;
 }
 #newPage:hover {
-    background-color: lightgrey;
+    background-color: rgb(179, 0, 255);
+    cursor: pointer;
 }   
 .buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column; 
-    margin-top: 1rem;
+
 }
 .pageButtons {
     display: flex;
     margin-top: 0.5rem;
 }
 .delBut {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
     background-color: transparent;
     border: 0px;
     border-radius: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 .delBut:hover {
     cursor: pointer;
-    background-color: lightgrey;
+    background-color: rgb(179, 0, 255);
 }
 .projects {
     grid-column: 1 / 2;
     grid-row-start: 2;
-    border: 1px solid blue;
+    padding-left: 0.75rem;
     height: 100%;
+    background-color: #111111;
+    /* -webkit-box-shadow: 8px 0px 6px -6px black;
+    -moz-box-shadow: 8px 0px 6px -6px black;
+         box-shadow: 8px 0px 6px -6px black; */
+
+         box-shadow: rgba(0, 0, 0, 0.45) 25px 25px 20px -20px;
 }
 .titleList {
     height: 3rem;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* color:rgb(179, 0, 255); */
     font-size: 2rem;
+
 }
 .inputContainer {
-    height: 1.5rem;
+    height: 2rem;
+    font-size: 2rem;
+    width: 100%;
+    display: grid; 
+    grid-template-columns: 1fr 8fr;
+    margin-right: 1rem;
+}
+.inputContainer input {
+    grid-column: 2 / 3;
+}
+select {
+    background-color: #181818;
+    border: 0px;
+    outline: 0px;
+    color: var(--grey);
+}
+option {
+    color: white;
 }
 
-
+.cancelPage, .submitPage {
+    background-color: transparent;
+    border: 0px;
+}
+.cancelPage:hover, .submitPage:hover {
+    background-color: rgb(179, 0, 255);
+    cursor: pointer;
+}
 /* right side  */
 .openTaskContainer {
     width: 10rem;
@@ -125,7 +200,7 @@ span {
     border-radius: 6rem;
 }
 .openTaskContainer:hover {
-    background-color: lightgrey;
+    border-bottom: 2px solid rgb(179, 0, 255);
     cursor: pointer;
 }
 
@@ -142,17 +217,25 @@ span {
 .rightSide {
     grid-row-start: 2;
     grid-column: 2 / 3;
+
+
 }
 .box, .categories , form{
     display: grid;
-    grid-template-columns: 3rem repeat(5, 1fr);
+    grid-template-columns: 2rem repeat(3, 1fr) 8rem 5rem;
 
 }
 .categories{
     width: 100%;
+
+
+}
+.categories p {
+    border-bottom: 1px solid rgb(179, 0, 255);
 }
 .box {
-    height: 2rem;
+    height: 3rem;
+    font-size: 1.25rem;
 }
 form{
     width: 100%;
@@ -170,6 +253,21 @@ form{
     align-items: center;
     word-break: break-all;
 }
+input, textarea {
+    background-color: #181818;
+    border: 0px;
+    padding: 0.5rem;
+    border-right: 2px solid #121212;
+    color: white;
+
+}
+
+input:focus{
+    border: 0px;
+    outline: none;
+    color: white;
+    border-bottom: 1px solid rgb(179, 0, 255);
+}
 input[name="name"], .nameInput{
     grid-column: 2 /3;
 }
@@ -178,6 +276,12 @@ input[name="desc"], .descInput {
 }
 input[name="date"], .dateInput {
     grid-column: 4 / 5;
+}
+input[type="date"]:focus::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+.dateInput:focus {
+    color: white;
 }
 select[name="priority"], .priorityInput{
     grid-column: 5 / 6;
@@ -194,7 +298,7 @@ select[name="priority"], .priorityInput{
 /* right side (edit and add) */
 .editContainer {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
 }
 #addButton, #cancelButton {
@@ -214,14 +318,15 @@ select[name="priority"], .priorityInput{
     align-items: center;
 }
 .add {
-    border: 1px solid red;
     grid-column: 2 / 3;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 1rem;
 }
-#addButton:hover {
-    background-color: #323232;
+#addButton:hover, #cancelButton:hover {
+    background-color: rgb(179, 0, 255);
+    cursor: pointer;
 }
 #content {
     height: 100%;
@@ -239,3 +344,6 @@ select[name="priority"], .priorityInput{
 }
 
 
+.categories p {
+    font-size: 14px;
+}

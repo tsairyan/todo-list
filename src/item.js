@@ -7,7 +7,7 @@ const taskFactory = (name, desc, date, priority) => {
     editContainer.classList.add('editContainer');
     const prioritySelect = document.getElementById('priority')
     const priorityOptions = prioritySelect.options[prioritySelect.selectedIndex].text;
-
+    const dateFocus = document.querySelector('input[name="date"]');
     const addToDom = () => {
      
       
@@ -15,10 +15,13 @@ const taskFactory = (name, desc, date, priority) => {
         const inputs = document.querySelectorAll('input');
         inputs.forEach(element => element.value = '');
 
-        prioritySelect.value = 'None';
+        prioritySelect.value = 'hide';
         const content = document.querySelector("#content");
+        prioritySelect.style.color = '#696c80';
+        
+        
+        dateFocus.setAttribute('type', 'text');
 
-    
         //When addButton is pressed
         //1. Check: If data fields are empty, give an error message
         console.log(name);
@@ -73,7 +76,12 @@ const taskFactory = (name, desc, date, priority) => {
         el1.textContent = name;
         el2.textContent = desc;
         el3.textContent = date;
-        el4.textContent = priority;
+        if (priority === "priority") {
+            el4.textContent = "";
+        } else {
+            el4.textContent = priority;
+            
+        }
     
         //reset forms, optimizze
     

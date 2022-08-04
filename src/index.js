@@ -34,7 +34,10 @@ openTaskContainer.addEventListener('click', function() {
     center.style.display = "flex";
 });
 
-const prioritySelect = document.getElementById('priority')
+const prioritySelect = document.getElementById('priority');
+prioritySelect.addEventListener("change", function () {
+    prioritySelect.style.color = "white";
+    });
 //Cancel Button
 const cancelAdd = document.querySelector("#cancelButton");
 cancelAdd.addEventListener('click', function() {
@@ -46,10 +49,14 @@ cancelAdd.addEventListener('click', function() {
     const inputs = document.querySelectorAll('input');
     inputs.forEach(element => element.value = '');
 
-    prioritySelect.value = 'None'; 
+    prioritySelect.value = 'hide'; 
+    prioritySelect.style.color = "#696c80";
+
+
+    date.setAttribute('type', 'text');
+    
     if (errorDisplayed == true) {
         hideErrorMsg();
-
     }
     errorDisplayed = false;
 });
@@ -94,8 +101,10 @@ addButton.addEventListener('click', function() {
 const newPage = document.querySelector('#newPage');
 const content = document.querySelector('#content');
 const allItems = document.querySelector('.allItems');
+const newPageInput = document.querySelector('.inputContainer input');
 newPage.addEventListener('click', function() {
     addPage(); 
+
 
 });
 
