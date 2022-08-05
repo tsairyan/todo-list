@@ -106,6 +106,8 @@ newPage.addEventListener('click', function() {
     addPage(); 
 
 
+
+
 });
 
     

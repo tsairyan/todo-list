@@ -2,15 +2,21 @@
 
 //create a function that stores all the dom elements into an array as an object????
 const pages = [];
+const projectList = [];
+projectList[0] = document.querySelector('.home');
 let curr = 0;
 const allItems = document.querySelector('.allItems');
 const content = document.querySelector('#content');
+const thePages = document.querySelectorAll('.textContent p');
 //when we create a new page, we change curr to what the new index is
 //when we click on a diff page to change to, we change curr to that, but before we do that we save the current elements into the pages[curr]
 let tracker = 1;
+function checker() {
 
+}
 //function that creates pages and assigns each page to an index...
 function addPage() { //takes input field.
+
 
     const buttonSection = document.querySelector('.buttons')
     const newPageButton = document.querySelector('#newPage');
@@ -74,11 +80,9 @@ function addPage() { //takes input field.
 
 
     //submit event listener
-  let firstRun = true;
-
  
     submit.addEventListener('click', function() {
-     
+
 
         //Displays all the lists we have (left side)
         const pageNameToCreate = pageName.value;
@@ -86,14 +90,13 @@ function addPage() { //takes input field.
 
         inputContainer.remove();
         newPageButton.style.display = "flex"; 
-        //add a section that shows the list of displays later... adds the pageNameToCreate to display.., clickable i guess
 
 
         const lists = document.querySelector('.textContent');
         const page = document.createElement('p');
         page.textContent = pageNameToCreate;
         page.setAttribute('id', tracker);
-        page.classList.add('a' + tracker);
+        page.classList.add('a');
         tracker++;
 
         // page.addEventListener('click', function() {
@@ -120,7 +123,12 @@ function addPage() { //takes input field.
         const temp = document.createElement('div');
         temp.setAttribute('id', 'content');
         allItems.appendChild(temp);
-        curr = pages.length;
+
+
+        projectList[curr].style.color = 'white';
+        curr = pages.length; //curr value gets moved to new page index
+
+       
 
         
         
@@ -134,6 +142,7 @@ function addPage() { //takes input field.
             // })
 
             //After clicking on the element it doesnt work
+            const deleteContainer = document.createElement('div');
             const deletePage = document.createElement('button');
             deletePage.setAttribute('id', page.id);
             deletePage.classList.add('delBut');
@@ -149,59 +158,63 @@ function addPage() { //takes input field.
             deletePage.appendChild(cancelSVG1);
 
 
+            deleteContainer.addEventListener('click', function() {
 
-            deletePage.addEventListener('click', function() {
-                if (curr !== deletePage.id) {
-                    deletePage.nextElementSibling.click();
+                if (curr !== deleteContainer.id) {
+                    deleteContainer.nextElementSibling.click();
                 } 
 
-                    curr = deletePage.previousElementSibling.id;
-                    // console.log(curr);
-                    deletePage.nextElementSibling.remove();
-                    deletePage.remove();
-                        while (allItems.firstChild) {
-                            allItems.removeChild(allItems.firstChild);
-                        }
-                        console.log(pages[curr]);
-                        allItems.appendChild(pages[curr]); 
-                        
-                
+                curr = deleteContainer.previousElementSibling.id;
+
+                projectList[curr].style.color = 'rgb(179, 0, 255)';
 
 
-             
+                deleteContainer.nextElementSibling.remove();
+                deleteContainer.remove();
+                while (allItems.firstChild) {
+                    allItems.removeChild(allItems.firstChild);
+                }
+                console.log(pages[curr]);
+                allItems.appendChild(pages[curr]); 
                 
-
                 
-                
-
+                //i want to remove the element from the dom, but not from the arraylist
 
                 //once u switch tabs, the button event listener switches also, so you're deleting the wrong tab?? 
                 //when delete, activate the 'click' on the previous element so it switches?, remove the left side
-            
+
+
             }); 
-            lists.appendChild(deletePage);  
+            lists.appendChild(deleteContainer);
+            deleteContainer.appendChild(deletePage);  
             lists.appendChild(page);
-            const thePages = document.querySelectorAll('.textContent p');
+            projectList.push(page);
+            projectList[curr].style.color = 'rgb(179, 0, 255)';
+
+
+            
 
             // const delBut = document.createElement('button');
             // lists.appendChild(delBut);
 
-
+            const thePages = document.querySelectorAll('.textContent p');
             thePages.forEach(element => {
 
                 element.addEventListener('click', function() {
+                    console.log(thePages);
+                    console.log(curr);
+
+
                     if (!pages.includes(document.querySelector('#content'))) {
                         pages.push(document.querySelector('#content'));
                     }
-         
 
-
-
-                    thePages[curr].style.color = "white";
-
-                    curr = element.id;
                     
-                    thePages[curr].style.color = "rgb(179, 0, 255)";
+                    projectList[curr].style.color = 'white';
+                    curr = element.id;
+                    console.log(curr);
+
+                    projectList[curr].style.color = 'rgb(179, 0, 255)';
 
                     while (allItems.firstChild) {
                         allItems.removeChild(allItems.firstChild);
@@ -210,11 +223,11 @@ function addPage() { //takes input field.
 
 
 
-                    
-                })
 
-              
-                
+                    
+                });
+
+              //deleting, curr -1 turns purple, adding, 
             
 
             })
@@ -232,14 +245,16 @@ function addPage() { //takes input field.
                     
             //     });
             // })
+
          
+
+
     });
 
     // var arr = Array.prototype.slice.call(thePages);
 
+
 }
-
-
 
 
 
@@ -261,4 +276,9 @@ homePage.addEventListener('click', function() {
  
 })
 
+
+
+
 export {addPage};
+
+//Create a custom page array containing the 'p' dom elements. adding projects adds to this list, but removing doesn't..

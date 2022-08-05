@@ -93,9 +93,7 @@ p {
     width: 100%;
     justify-content: center;
 }
-span svg {
-    
-}
+
 .home {
     display: flex;
     align-items: center;
@@ -227,6 +225,10 @@ option {
 }
 .categories{
     width: 100%;
+    margin-bottom: 0.5rem;
+    /* box-shadow: rgb(0, 0, 0) 0px 20px 30px -10px; */
+
+    background-color: #111111;
 
 
 }
@@ -239,7 +241,8 @@ option {
     border-radius: 10px;
     border-left: 5px solid rgb(179, 0, 255);
 }
-.box:hover {
+.box:hover { 
+    /* on hover we do border-left???? */
     background-color: #242424;
    
 }
