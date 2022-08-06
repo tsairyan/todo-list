@@ -8,4 +8,11 @@ we store the item created in the factory, before it the method addToDom() in the
 
 
 
-/*
+*/
+let temp = 0;
+function store(task) {
+    localStorage.setItem("task", JSON.stringify(task));
+    temp++;
+}
+
+

@@ -2,6 +2,7 @@ import './styles.css';
 import taskFactory from './item';
 import {errorMsg, hideErrorMsg} from './error';
 import {addPage} from './projects.js';
+
 const addButton = document.querySelector('#addButton');
 const name = document.querySelector('input[name="name"]');
 const desc = document.querySelector('input[name="desc"]');
@@ -54,7 +55,7 @@ cancelAdd.addEventListener('click', function() {
 });
 
 //Add Button
-
+let taskArray = [];
 addButton.addEventListener('click', function() {
     const prioritySelect = document.getElementById('priority')
     const priorityOptions = prioritySelect.options[prioritySelect.selectedIndex].text;
@@ -65,6 +66,7 @@ addButton.addEventListener('click', function() {
         
     } else if (errorDisplayed){ //reset fields after
         const item = taskFactory(name.value, desc.value, date.value, priorityOptions);
+        taskArray.push(item);
 
         item.addToDom();
         hideErrorMsg();
@@ -75,6 +77,7 @@ addButton.addEventListener('click', function() {
         openTaskContainer.style.display = "flex";
     } else {
         const item = taskFactory(name.value, desc.value, date.value, priorityOptions);
+        taskArray.push(item);
 
         item.addToDom();
         errorDisplayed = false;
@@ -84,7 +87,9 @@ addButton.addEventListener('click', function() {
         openTaskContainer.style.display = "flex";   
     }
 
-    
+    localStorage.setItem("task", JSON.stringify(taskArray));
+
+
 
 });
 
@@ -106,3 +111,33 @@ newPage.addEventListener('click', function() {
 const home = document.querySelector('.home');
 home.style.color = 'rgb(179, 0, 255)';
 home.style.fontWeight = '700';
+
+
+const allItems = document.querySelector('.allItems');
+
+
+window.onload = function() {
+    if (localStorage.length == 0) {
+        //reset tracker to 0
+    } else {
+        var x = JSON.parse(localStorage.getItem(localStorage.key(0)));
+        taskArray = x;
+        console.log(typeof x);
+        
+        for (let i = 0; i < x.length; i++) {
+            if (x[i] !== null) {
+                const test = taskFactory(x[i].name, x[i].desc, x[i].date, x[i].priority);
+                test.addToDom();
+            }
+            
+        
+           
+        }
+    }
+  
+  
+};
+
+
+//error when localstorage has no elements stored..
+//iterating through trouble...

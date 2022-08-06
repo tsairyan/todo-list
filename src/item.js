@@ -1,6 +1,9 @@
-
+import {store} from './webstorage.js';
+//if count exists, then we set count = to that, else we let count = 0;
 let count = 0;
+
 const taskFactory = (name, desc, date, priority) => {
+    console.log(count);
     const editContainer = document.createElement('div');
     editContainer.classList.add('editContainer');
     const prioritySelect = document.getElementById('priority')
@@ -252,7 +255,15 @@ const taskFactory = (name, desc, date, priority) => {
             el5.style.display = "none";
             editTask();
         })
+
+
         el0.addEventListener('click', function() {
+            console.log(box.id);
+            var x = JSON.parse(localStorage.getItem(localStorage.key(0)));
+            x[box.id] = null; //if all null || empty, then we don't add in addToDom()
+            localStorage.setItem("task", JSON.stringify(x));
+
+
             box.remove();
         });
 
