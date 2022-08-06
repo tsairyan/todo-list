@@ -23,6 +23,7 @@
     font-family: epilogue;
     src: url(./assets/fonts/);
 } */
+
 svg {
     display: flex;
     justify-content: center;
@@ -190,7 +191,8 @@ p {
 }
 .inputContainer input {
     grid-column: 2 / 3;
-    margin-right: 5rem;
+    margin-right: 5
+    rem;
 
 }
 select {
@@ -273,6 +275,8 @@ option {
     /* on hover we do border-left???? */
     background-color: #242424;
     border-left: 5px solid rgb(179, 0, 255);
+
+
 
 }
 form{

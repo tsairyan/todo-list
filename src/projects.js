@@ -6,18 +6,12 @@ const projectList = [];
 projectList[0] = document.querySelector('.home');
 let curr = 0;
 const allItems = document.querySelector('.allItems');
-const content = document.querySelector('#content');
-const thePages = document.querySelectorAll('.textContent p');
 //when we create a new page, we change curr to what the new index is
 //when we click on a diff page to change to, we change curr to that, but before we do that we save the current elements into the pages[curr]
 let tracker = 1;
-function checker() {
 
-}
 //function that creates pages and assigns each page to an index...
 function addPage() { //takes input field.
-
-
     const buttonSection = document.querySelector('.buttons')
     const newPageButton = document.querySelector('#newPage');
     
@@ -90,7 +84,6 @@ function addPage() { //takes input field.
     //Cancel event listener
     cancel.addEventListener('click', function() {
         buttonContainer.remove();
-
         inputContainer.remove();
         newPageButton.style.display = "flex";
     })
@@ -99,8 +92,6 @@ function addPage() { //takes input field.
     //submit event listener
  
     submit.addEventListener('click', function() {
-
-
         //Displays all the lists we have (left side)
         const pageNameToCreate = pageName.value;
         buttonContainer.remove();

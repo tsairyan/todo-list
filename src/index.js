@@ -2,20 +2,12 @@ import './styles.css';
 import taskFactory from './item';
 import {errorMsg, hideErrorMsg} from './error';
 import {addPage} from './projects.js';
-const addSection = document.querySelector('.add');
 const addButton = document.querySelector('#addButton');
-
 const name = document.querySelector('input[name="name"]');
-
 const desc = document.querySelector('input[name="desc"]');
 const date = document.querySelector('input[name="date"]');
-
-
-
-let errorDisplayed = false;
-
-
 const allInputs = document.querySelectorAll('form > *');
+let errorDisplayed = false;
 
 allInputs.forEach(element => {
     element.style.display = "none";
@@ -99,15 +91,9 @@ addButton.addEventListener('click', function() {
 //reset priority field when submitting
 
 const newPage = document.querySelector('#newPage');
-const content = document.querySelector('#content');
-const allItems = document.querySelector('.allItems');
-const newPageInput = document.querySelector('.inputContainer input');
+
 newPage.addEventListener('click', function() {
     addPage(); 
-
-
-
-
 });
 
     

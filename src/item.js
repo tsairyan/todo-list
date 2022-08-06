@@ -1,16 +1,11 @@
 
-    let count = 0;
-    
+let count = 0;
 const taskFactory = (name, desc, date, priority) => {
-
     const editContainer = document.createElement('div');
     editContainer.classList.add('editContainer');
     const prioritySelect = document.getElementById('priority')
-    const priorityOptions = prioritySelect.options[prioritySelect.selectedIndex].text;
     const dateFocus = document.querySelector('input[name="date"]');
     const addToDom = () => {
-     
-      
         //clear input fields..
         const inputs = document.querySelectorAll('input');
         inputs.forEach(element => element.value = '');
@@ -18,18 +13,11 @@ const taskFactory = (name, desc, date, priority) => {
         prioritySelect.value = 'hide';
         const content = document.querySelector("#content");
         prioritySelect.style.color = '#696c80';
-        
-        
         dateFocus.setAttribute('type', 'text');
 
         //When addButton is pressed
         //1. Check: If data fields are empty, give an error message
-        console.log(name);
-
-      
         //2. Gets data from the input
-    
-    
         //Create the categories
         const box = document.createElement('div');
         box.classList.add('box'); //.box1...n
@@ -61,11 +49,8 @@ const taskFactory = (name, desc, date, priority) => {
         })
         el0.addEventListener('mouseleave', function (){
             el0.style.cursor = "default";
-
             el1SVG.style.opacity = "0";
         })
-
-
 
         const el1 = document.createElement('div');
         el1.classList.add('el1');
@@ -75,11 +60,9 @@ const taskFactory = (name, desc, date, priority) => {
         el3.classList.add('el3');
         const el4 = document.createElement('div');
         el4.classList.add('el4');
-    
   
         const el5 = document.createElement('button');
         el5.classList.add('el5');
-
 
         const editSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         editSVG.setAttribute('height', '24');    
@@ -89,9 +72,6 @@ const taskFactory = (name, desc, date, priority) => {
         newPath2.setAttribute('d', "M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z");
         editSVG.appendChild(newPath2);
      
-
-
-
         checkboxContainer.appendChild(el0);
         box.appendChild(el1);
         box.appendChild(el2);
@@ -109,12 +89,8 @@ const taskFactory = (name, desc, date, priority) => {
         }
     
         //reset forms, optimizze
-    
-
-    
         const editTask = () => { //Press Edit Button we turn the text content of the examples into input fields. 
             //-> Opens up submit/cancel buttons, Cancel => turn input -> original textContent; Submit => turn input -> new textContent
-            console.log('test');
             //1. Create the UI, submit/cancel buttons
             //Hide edit button in the eventlistener below
     
@@ -138,8 +114,6 @@ const taskFactory = (name, desc, date, priority) => {
             cancelSVG.appendChild(newPath1);
             cancel.appendChild(cancelSVG);
 
-
-
             editContainer.appendChild(cancel); //which ever one goes first
             editContainer.appendChild(submit);
         
@@ -159,7 +133,7 @@ const taskFactory = (name, desc, date, priority) => {
             nameInput.value = el1.textContent;
             descInput.value = el2.textContent;
             dateInput.value = date;
-        
+
 
             const priorityInput = document.createElement('select');
             priorityInput.classList.add('priorityInput');
@@ -200,6 +174,7 @@ const taskFactory = (name, desc, date, priority) => {
                 none.setAttribute("selected", "true");
                 
             }
+            priorityInput.style.color = 'white';
             //Save old inputs for cancel use..?
             
             //Remove old inputs..
@@ -232,7 +207,7 @@ const taskFactory = (name, desc, date, priority) => {
                 submit.remove();
                 cancel.remove();
                 
-                el5.style.display = "block";
+                el5.style.display = "flex";
 
                 
             })
@@ -264,7 +239,7 @@ const taskFactory = (name, desc, date, priority) => {
 
                 submit.remove();
                 cancel.remove();
-                el5.style.display = "block";
+                el5.style.display = "flex";
 
             })
 
@@ -275,20 +250,12 @@ const taskFactory = (name, desc, date, priority) => {
     
         el5.addEventListener('click', function() {
             el5.style.display = "none";
-        
             editTask();
-
-
         })
         el0.addEventListener('click', function() {
             box.remove();
-        
         });
 
-    
-    
-    
-    
         count++;
     
     }

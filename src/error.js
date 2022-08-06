@@ -8,17 +8,12 @@ function errorMsg() {
     errorMsgElement.style.marginLeft = "0.5rem";
     errorMsgElement.style.marginTop = "0.5rem";
     errorContainer.appendChild(errorMsgElement);
-
     name.style.outline = "1px solid rgb(179, 0, 255)";
     name.style.borderRight = "1px solid rgb(179, 0, 255)";
-
-  
 }
 function hideErrorMsg(boolean) {
-        name.style.outline = "0px";
-        name.style.borderRight = "2px solid #121212";
-        errorContainer.removeChild(errorContainer.lastChild);
-
-
+    name.style.outline = "0px";
+    name.style.borderRight = "2px solid #121212";
+    errorContainer.removeChild(errorContainer.lastChild);
 }
 export {errorMsg, hideErrorMsg};
