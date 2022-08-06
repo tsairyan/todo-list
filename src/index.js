@@ -119,3 +119,4 @@ newPage.addEventListener('click', function() {
 */
 const home = document.querySelector('.home');
 home.style.color = 'rgb(179, 0, 255)';
+home.style.fontWeight = '700';

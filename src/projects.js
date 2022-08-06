@@ -50,6 +50,23 @@ function addPage() { //takes input field.
     
     const inputContainer = document.createElement('div');
     inputContainer.classList.add('inputContainer');
+    
+    const elx = document.createElement('div');
+    elx.style.display = 'flex';
+    elx.style.justifyContent = 'center';
+    elx.style.alignItems = 'center';
+    inputContainer.appendChild(elx);
+    const el5SVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    el5SVG.setAttribute('height', '20');    
+    el5SVG.setAttribute('width', '20');
+    elx.appendChild(el5SVG);
+    const pathy = document.createElementNS("http://www.w3.org/2000/svg","path"); 
+    pathy.setAttribute('d', "M8.333 13.729 5 10.396l1.062-1.063 2.271 2.271L13.938 6 15 7.062Z");
+    el5SVG.appendChild(pathy);
+    el5SVG.style.opacity = "0";
+
+
+
     buttonSection.appendChild(inputContainer);
     inputContainer.appendChild(pageName);
     pageName.focus();
@@ -124,7 +141,7 @@ function addPage() { //takes input field.
         temp.setAttribute('id', 'content');
         allItems.appendChild(temp);
 
-
+        projectList[curr].style.fontWeight = 'normal';
         projectList[curr].style.color = 'white';
         curr = pages.length; //curr value gets moved to new page index
 
@@ -165,7 +182,7 @@ function addPage() { //takes input field.
                 } 
 
                 curr = deleteContainer.previousElementSibling.id;
-
+                projectList[curr].style.fontWeight = '700';
                 projectList[curr].style.color = 'rgb(179, 0, 255)';
 
 
@@ -189,6 +206,7 @@ function addPage() { //takes input field.
             deleteContainer.appendChild(deletePage);  
             lists.appendChild(page);
             projectList.push(page);
+            projectList[curr].style.fontWeight = '700';
             projectList[curr].style.color = 'rgb(179, 0, 255)';
 
 
@@ -211,10 +229,13 @@ function addPage() { //takes input field.
 
                     
                     projectList[curr].style.color = 'white';
+                    projectList[curr].style.fontWeight = 'normal';
+
                     curr = element.id;
                     console.log(curr);
 
                     projectList[curr].style.color = 'rgb(179, 0, 255)';
+                    projectList[curr].style.fontWeight = '700';
 
                     while (allItems.firstChild) {
                         allItems.removeChild(allItems.firstChild);

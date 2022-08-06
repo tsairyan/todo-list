@@ -152,7 +152,7 @@ const taskFactory = (name, desc, date, priority) => {
             const dateInput = document.createElement('input');
             dateInput.classList.add('dateInput');
             dateInput.setAttribute('type', 'text');
-            dateInput.setAttribute('placeholder', "date");
+            dateInput.setAttribute('placeholder', "");
             dateInput.setAttribute('onfocus', 'this.type="date"');
 
             //make them contain the same text as when before pressing edit
