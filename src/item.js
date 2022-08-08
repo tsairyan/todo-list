@@ -98,7 +98,7 @@ const taskFactory = (name, desc, date, priority) => {
         }
     
         //reset forms, optimizze
-        const editTask = () => { //Press Edit Button we turn the text content of the examples into input fields. 
+        const editTask = (index) => { //Press Edit Button we turn the text content of the examples into input fields. 
             //-> Opens up submit/cancel buttons, Cancel => turn input -> original textContent; Submit => turn input -> new textContent
             //1. Create the UI, submit/cancel buttons
             //Hide edit button in the eventlistener below
@@ -234,11 +234,20 @@ const taskFactory = (name, desc, date, priority) => {
                  el1.textContent = nameInput.value;
                  el2.textContent = descInput.value;
                  el3.textContent = dateInput.value;
-                date = dateInput.value;
-                 
+                 date = dateInput.value;
+            
                  const priorityOptions = priorityInput.options[priorityInput.selectedIndex].text;
-                 console.log(priorityOptions);
                 el4.textContent = priorityOptions;
+
+                let itemInStorage = JSON.parse(localStorage.getItem("task"));
+                let actualBox = itemInStorage[index];
+                actualBox.name = el1.textContent;
+                actualBox.desc = el2.textContent;
+                actualBox.date = date;
+                actualBox.priority = el4.textContent;
+                localStorage.setItem("task", JSON.stringify(itemInStorage));
+
+
 
                 priorityInput.remove();
                 dateInput.remove();
@@ -250,6 +259,8 @@ const taskFactory = (name, desc, date, priority) => {
                 cancel.remove();
                 el5.style.display = "flex";
 
+
+
             })
 
 
@@ -259,13 +270,15 @@ const taskFactory = (name, desc, date, priority) => {
     
         el5.addEventListener('click', function() {
             el5.style.display = "none";
-            editTask();
+            editTask(box.id);
+           
+
         })
 
 
         el0.addEventListener('click', function() {
             // console.log(box.id);
-            var x = JSON.parse(localStorage.getItem(localStorage.key(0)));
+            let x = JSON.parse(localStorage.getItem(localStorage.key(0)));
             x[box.id] = null; //if all null || empty, then we don't add in addToDom()
             localStorage.setItem("task", JSON.stringify(x));
 
