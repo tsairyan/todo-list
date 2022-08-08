@@ -10,6 +10,10 @@ const date = document.querySelector('input[name="date"]');
 const allInputs = document.querySelectorAll('form > *');
 let errorDisplayed = false;
 
+let tempTrack = 0;
+
+
+
 allInputs.forEach(element => {
     element.style.display = "none";
 });
@@ -69,6 +73,8 @@ addButton.addEventListener('click', function() {
         taskArray.push(item);
 
         item.addToDom();
+
+
         hideErrorMsg();
         errorDisplayed = false;
         allInputs.forEach(element => {
@@ -80,6 +86,9 @@ addButton.addEventListener('click', function() {
         taskArray.push(item);
 
         item.addToDom();
+
+
+
         errorDisplayed = false;
         allInputs.forEach(element => {
             element.style.display = "none";
@@ -88,6 +97,8 @@ addButton.addEventListener('click', function() {
     }
 
     localStorage.setItem("task", JSON.stringify(taskArray));
+    tempTrack++;
+    localStorage.setItem("tracker", tempTrack);
 
 
 
@@ -119,20 +130,27 @@ const allItems = document.querySelector('.allItems');
 window.onload = function() {
     if (localStorage.length == 0) {
         //reset tracker to 0
+        tempTrack = 0;
+        localStorage.setItem("tracker", tempTrack);
     } else {
         var x = JSON.parse(localStorage.getItem(localStorage.key(0)));
         taskArray = x;
         console.log(typeof x);
         
-        for (let i = 0; i < x.length; i++) {
+        for (let i = 0; i < taskArray.length; i++) {
             if (x[i] !== null) {
-                const test = taskFactory(x[i].name, x[i].desc, x[i].date, x[i].priority);
+                tempTrack = i;
+                localStorage.setItem("tracker", tempTrack);
+
+                const test = taskFactory(taskArray[i].name, taskArray[i].desc, taskArray[i].date, taskArray[i].priority);
                 test.addToDom();
             }
             
         
            
         }
+        tempTrack++;
+        localStorage.setItem("tracker", tempTrack);
     }
   
   

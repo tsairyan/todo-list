@@ -2,6 +2,7 @@ import {store} from './webstorage.js';
 //if count exists, then we set count = to that, else we let count = 0;
 let count = 0;
 
+
 const taskFactory = (name, desc, date, priority) => {
     console.log(count);
     const editContainer = document.createElement('div');
@@ -9,6 +10,11 @@ const taskFactory = (name, desc, date, priority) => {
     const prioritySelect = document.getElementById('priority')
     const dateFocus = document.querySelector('input[name="date"]');
     const addToDom = () => {
+
+   
+        
+        
+
         //clear input fields..
         const inputs = document.querySelectorAll('input');
         inputs.forEach(element => element.value = '');
@@ -24,7 +30,7 @@ const taskFactory = (name, desc, date, priority) => {
         //Create the categories
         const box = document.createElement('div');
         box.classList.add('box'); //.box1...n
-        box.setAttribute('id', count);
+        box.setAttribute('id', JSON.parse(localStorage.getItem("tracker")));
 
         content.appendChild(box);
         const checkboxContainer = document.createElement('div');
@@ -228,7 +234,7 @@ const taskFactory = (name, desc, date, priority) => {
                  el1.textContent = nameInput.value;
                  el2.textContent = descInput.value;
                  el3.textContent = dateInput.value;
-                    date = dateInput.value;
+                date = dateInput.value;
                  
                  const priorityOptions = priorityInput.options[priorityInput.selectedIndex].text;
                  console.log(priorityOptions);
@@ -258,11 +264,10 @@ const taskFactory = (name, desc, date, priority) => {
 
 
         el0.addEventListener('click', function() {
-            console.log(box.id);
+            // console.log(box.id);
             var x = JSON.parse(localStorage.getItem(localStorage.key(0)));
             x[box.id] = null; //if all null || empty, then we don't add in addToDom()
             localStorage.setItem("task", JSON.stringify(x));
-
 
             box.remove();
         });
