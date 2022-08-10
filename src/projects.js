@@ -11,93 +11,17 @@ const allItems = document.querySelector('.allItems');
 let tracker = 1;
 
 //function that creates pages and assigns each page to an index...
-function addPage() { //takes input field.
-    const buttonSection = document.querySelector('.buttons')
-    const newPageButton = document.querySelector('#newPage');
+const addPage = (pageName) => { //takes input field.
     
-    const pageName = document.createElement('input');
-    
-    const submit = document.createElement('button');
-    submit.classList.add('submitPage');
-    const cancel = document.createElement('button');
-    cancel.classList.add('cancelPage');
-
-
-    const submitSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    submitSVG.setAttribute('height', '24');    
-    submitSVG.setAttribute('width', '24');
-    submit.appendChild(submitSVG);
-    const newPath = document.createElementNS("http://www.w3.org/2000/svg","path"); 
-    newPath.setAttribute('d', "m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4Z");
-    submitSVG.appendChild(newPath);
-
-    
-    const cancelSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    cancelSVG.setAttribute('height', '24');    
-    cancelSVG.setAttribute('width', '24');
-    const newPath1 = document.createElementNS("http://www.w3.org/2000/svg","path"); 
-    newPath1.setAttribute('d', "M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z");
-    cancelSVG.appendChild(newPath1);
-    cancel.appendChild(cancelSVG);
-
-
-    
-    const inputContainer = document.createElement('div');
-    inputContainer.classList.add('inputContainer');
-    
-    const elx = document.createElement('div');
-    elx.style.display = 'flex';
-    elx.style.justifyContent = 'center';
-    elx.style.alignItems = 'center';
-    inputContainer.appendChild(elx);
-    const el5SVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    el5SVG.setAttribute('height', '20');    
-    el5SVG.setAttribute('width', '20');
-    elx.appendChild(el5SVG);
-    const pathy = document.createElementNS("http://www.w3.org/2000/svg","path"); 
-    pathy.setAttribute('d', "M8.333 13.729 5 10.396l1.062-1.063 2.271 2.271L13.938 6 15 7.062Z");
-    el5SVG.appendChild(pathy);
-    el5SVG.style.opacity = "0";
-
-
-
-    buttonSection.appendChild(inputContainer);
-    inputContainer.appendChild(pageName);
-    pageName.focus();
-    pageName.setAttribute('placeholder', 'enter page name');
-
-
-    newPageButton.style.display = "none";
-    
-
-    const buttonContainer = document.createElement('div');
-    buttonContainer.classList.add('pageButtons');
-    buttonSection.appendChild(buttonContainer);
-    buttonContainer.appendChild(cancel);
-    buttonContainer.appendChild(submit);
-
-    
-    //when pressing a new page, stores the previous .box and creates a blank sheet
-    //when switching pages, we go to the array index that it corresponds to...
-  
-
-    //Cancel event listener
-    cancel.addEventListener('click', function() {
-        buttonContainer.remove();
-        inputContainer.remove();
-        newPageButton.style.display = "flex";
-    })
-
-
     //submit event listener
  
-    submit.addEventListener('click', function() {
+    
         //Displays all the lists we have (left side)
-        const pageNameToCreate = pageName.value;
-        buttonContainer.remove();
+    const createPage = () => {
 
-        inputContainer.remove();
-        newPageButton.style.display = "flex"; 
+     
+        const pageNameToCreate = pageName;
+   
 
 
         const lists = document.querySelector('.textContent');
@@ -106,18 +30,6 @@ function addPage() { //takes input field.
         page.setAttribute('id', tracker);
         page.classList.add('a');
         tracker++;
-
-        // page.addEventListener('click', function() {
-        //     if (!pages.includes(document.querySelector('#content'))) {
-        //         pages.push(document.querySelector('#content'));
-        //     }
-                
-        //         curr = page.id;
-        //         while (allItems.firstChild) {
-        //             allItems.removeChild(allItems.firstChild);
-        //         }
-        //         allItems.appendChild(pages[curr]); 
-        // });
 
        
 
@@ -151,6 +63,8 @@ function addPage() { //takes input field.
 
             //After clicking on the element it doesnt work
             const deleteContainer = document.createElement('div');
+            deleteContainer.setAttribute('id', JSON.parse(localStorage.getItem("pageTracker")));
+
             const deletePage = document.createElement('button');
             deletePage.setAttribute('id', page.id);
             deletePage.classList.add('delBut');
@@ -177,6 +91,14 @@ function addPage() { //takes input field.
                 projectList[curr].style.color = 'rgb(179, 0, 255)';
 
 
+                let x = (deleteContainer.id);
+                
+                let temparr = JSON.parse(localStorage.getItem("uProject"));
+
+                temparr[x] = null;
+                console.log(temparr[x] + 'temparr');
+                localStorage.setItem("uProject", JSON.stringify(temparr));
+
                 deleteContainer.nextElementSibling.remove();
                 deleteContainer.remove();
                 while (allItems.firstChild) {
@@ -185,7 +107,7 @@ function addPage() { //takes input field.
                 console.log(pages[curr]);
                 allItems.appendChild(pages[curr]); 
                 
-                
+   
                 //i want to remove the element from the dom, but not from the arraylist
 
                 //once u switch tabs, the button event listener switches also, so you're deleting the wrong tab?? 
@@ -261,11 +183,12 @@ function addPage() { //takes input field.
          
 
 
-    });
+    
 
     // var arr = Array.prototype.slice.call(thePages);
 
-
+    }
+    return {pageName, createPage};
 }
 
 
