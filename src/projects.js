@@ -36,7 +36,7 @@ const addPage = (pageName) => { //takes input field.
 
         //when submit, we store into array......... and then create blank doc,,,, 
 
-        pages[curr] = document.querySelector('#content');
+        pages[curr] = document.querySelector('#content').outerHTML;
         while (allItems.firstChild) {
             allItems.removeChild(allItems.firstChild);
         }
@@ -104,8 +104,8 @@ const addPage = (pageName) => { //takes input field.
                 while (allItems.firstChild) {
                     allItems.removeChild(allItems.firstChild);
                 }
-                console.log(pages[curr]);
-                allItems.appendChild(pages[curr]); 
+
+                allItems.innerHTML = pages[curr]; 
                 
    
                 //i want to remove the element from the dom, but not from the arraylist
@@ -136,8 +136,8 @@ const addPage = (pageName) => { //takes input field.
                     console.log(curr);
 
 
-                    if (!pages.includes(document.querySelector('#content'))) {
-                        pages.push(document.querySelector('#content'));
+                    if (!pages.includes(document.querySelector('#content').outerHTML)) {
+                        pages.push(document.querySelector('#content').outerHTML);
                     }
 
                     
@@ -153,7 +153,7 @@ const addPage = (pageName) => { //takes input field.
                     while (allItems.firstChild) {
                         allItems.removeChild(allItems.firstChild);
                     }
-                    allItems.appendChild(pages[curr]); 
+                    allItems.innerHTML = pages[curr];
 
 
 
