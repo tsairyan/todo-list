@@ -403,3 +403,14 @@ select[name="priority"], .priorityInput{
 .categories p {
     font-size: 14px;
 }
+
+.colorWhite {
+    color: white;
+    font-weight: normal;
+}
+
+.colorSelected {
+    color: rgb(179, 0, 255);
+    font-weight: 700;
+
+}

@@ -3,8 +3,8 @@ import taskFactory from "./item";
 
 //create a function that stores all the dom elements into an array as an object????
 const pages = [];
-const projectList = [];
-projectList[0] = document.querySelector('.home');
+
+
 let curr = 0;
 const allItems = document.querySelector('.allItems');
 //when we create a new page, we change curr to what the new index is
@@ -13,13 +13,16 @@ let tracker = 1;
 
 //function that creates pages and assigns each page to an index...
 const addPage = (pageName) => { //takes input field.
-    
+    // let projectList = JSON.parse(localStorage.getItem("projectList"));
+// projectList[0] = document.querySelector('.home');
+// localStorage.setItem("projectList", projectList);
     //submit event listener
  
     
         //Displays all the lists we have (left side)
     const createPage = () => {
 
+   
      
         const pageNameToCreate = pageName;
    
@@ -117,7 +120,7 @@ const addPage = (pageName) => { //takes input field.
             // projectList.push(page);
             // projectList[curr].style.fontWeight = '700';
             // projectList[curr].style.color = 'rgb(179, 0, 255)';
-
+            // localStorage.setItem("projectList", JSON.stringify(projectList));
 
             
 
@@ -133,14 +136,20 @@ const addPage = (pageName) => { //takes input field.
 
 
 
-            
+
+                    
+                    thePages.forEach(element => {
+                        if (element.classList.contains('colorSelected')) {
+                            element.classList.remove('colorSelected');
+                        }
+                    });
 
                     
                     // projectList[curr].style.color = 'white';
                     // projectList[curr].style.fontWeight = 'normal';
 
                     curr = element.id;
-
+                    element.classList.add('colorSelected');
 
                     let p = curr;
                     console.log(p);
@@ -184,6 +193,13 @@ const addPage = (pageName) => { //takes input field.
             let p = localStorage.getItem("pageC");
             p++;
             localStorage.setItem("pageC", p);
+
+            thePages.forEach(element => {
+                if (element.classList.contains('colorSelected')) {
+                    element.classList.remove('colorSelected');
+                }
+            });
+            page.classList.add('colorSelected');
 
     }
     return {pageName, createPage};

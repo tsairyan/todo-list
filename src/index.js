@@ -255,15 +255,17 @@ newPage.addEventListener('click', function() {
 
 */
 const home = document.querySelector('.home');
-home.style.color = 'rgb(179, 0, 255)';
-home.style.fontWeight = '700';
+// home.style.color = 'rgb(179, 0, 255)';
+// home.style.fontWeight = '700';
 
 
 
 let taskArray = [];
-
+let projectList = [];
 window.onload = function() {
     if (localStorage.length == 0) {
+        home.classList.add('colorSelected');
+
         //reset tracker to 0
         tempTrack = 0;
         localStorage.setItem("tracker", tempTrack);
@@ -271,6 +273,8 @@ window.onload = function() {
         localStorage.setItem("pageC", pageC);
         tryAgain = 1;
         localStorage.setItem("tryAgain", tryAgain);
+
+        localStorage.setItem("projectList", JSON.stringify(projectList));
         // let innerArr = [];
 
         // taskArray[0] = innerArr;
