@@ -103,7 +103,7 @@ const addPage = (pageName) => { //takes input field.
 
 
                 
-                let pageC = curr;
+                let pageC = 0;
 
                 localStorage.setItem("pageC", pageC);
    
@@ -152,7 +152,7 @@ const addPage = (pageName) => { //takes input field.
                     element.classList.add('colorSelected');
 
                     let p = curr;
-                    console.log(p);
+
                     localStorage.setItem("pageC", p);
 
                     // projectList[curr].style.color = 'rgb(179, 0, 255)';
@@ -162,11 +162,13 @@ const addPage = (pageName) => { //takes input field.
                         content.removeChild(content.firstChild);
                     }
 
+                    
                     let outerArr = JSON.parse(localStorage.getItem("task"));
-                    let innerArray = outerArr[p];
 
                     let tempTrack = 0;
-                if (innerArray != null) {
+                if (outerArr[p] != null) {
+                    let innerArray = outerArr[p];
+
                     for (let i = 0; i < innerArray.length; i++) {
                         if (innerArray[i] != null) {
                             tempTrack = i;
@@ -190,9 +192,7 @@ const addPage = (pageName) => { //takes input field.
             })
            
         
-            let p = localStorage.getItem("pageC");
-            p++;
-            localStorage.setItem("pageC", p);
+           
 
             thePages.forEach(element => {
                 if (element.classList.contains('colorSelected')) {
@@ -218,12 +218,7 @@ homeIcon.addEventListener('click', function() {
 
 })
 homePage.setAttribute('id', '0');
-homePage.addEventListener('click', function() {
-//    console.log(homePage.id);
 
-
- 
-})
 
 
 

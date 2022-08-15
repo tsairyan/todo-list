@@ -13,8 +13,7 @@ let errorDisplayed = false;
 let tempTrack = 0;
 let pageTracker = 0;
 
-let tryAgain = 1;
-
+let tryAgain = localStorage.getItem("tryAgain");
 allInputs.forEach(element => {
     element.style.display = "none";
 });
@@ -26,6 +25,7 @@ openTask.classList.add('openTask');
 openTaskContainer.appendChild(openTask);
 openTaskContainer.addEventListener('click', function() {
     openTaskContainer.style.display = "none";
+    document.querySelector(".buttons").style.display = "none";
     allInputs.forEach(element => {
         element.style.display = "block";
     });
@@ -72,6 +72,8 @@ addButton.addEventListener('click', function() {
     } else if (name.value === '' && errorDisplayed) {
         
     } else if (errorDisplayed){ //reset fields after
+        document.querySelector(".buttons").style.display = "flex";
+
         const item = taskFactory(name.value, desc.value, date.value, priorityOptions);
         pageC = localStorage.getItem("pageC");
 
@@ -102,11 +104,13 @@ addButton.addEventListener('click', function() {
         });
         openTaskContainer.style.display = "flex";
     } else {
+        document.querySelector(".buttons").style.display = "flex";
+
         const item = taskFactory(name.value, desc.value, date.value, priorityOptions);
         pageC = localStorage.getItem("pageC");
 
         if (taskArray[pageC] == null) {
-            console.log('NO ARRAY' + pageC);
+
             let innerArr = [];
           
             innerArr.push(item);
@@ -115,7 +119,7 @@ addButton.addEventListener('click', function() {
 
         }
         else {
-            console.log('ARRAY' + pageC);
+
 
             taskArray = JSON.parse(localStorage.getItem("task"));
             let innerArr = taskArray[pageC];
@@ -241,8 +245,11 @@ newPage.addEventListener('click', function() {
        
 
         nPage.createPage();
-        tryAgain++;
+        tryAgain = projectTitle.length + 1;
         localStorage.setItem("tryAgain", tryAgain);
+        let x = JSON.parse(localStorage.getItem("uProject"))
+        pageC = x.length;
+        localStorage.setItem("pageC", pageC);
         // localStorage.setItem("pageTracker", pageTracker);
     });
 });
@@ -271,10 +278,11 @@ window.onload = function() {
         localStorage.setItem("tracker", tempTrack);
         pageC = 0;
         localStorage.setItem("pageC", pageC);
-        tryAgain = 1;
+        let tryAgain = 1;
         localStorage.setItem("tryAgain", tryAgain);
 
         localStorage.setItem("projectList", JSON.stringify(projectList));
+        localStorage.setItem("task", JSON.stringify(taskArray));
         // let innerArr = [];
 
         // taskArray[0] = innerArr;
@@ -284,18 +292,21 @@ window.onload = function() {
 
     } else {
      
+        home.classList.add('colorSelected');
 
         
 
         if(localStorage.getItem("uProject")) {
             let permProjects = JSON.parse(localStorage.getItem("uProject"));
             projectTitle = permProjects;
-            
+            if (projectTitle.every(element => element === null)) {
+                pageC = -1;
+            } else {
             for (let i = 0; i < projectTitle.length; i++) {
-                tryAgain = i + 1;
-                localStorage.setItem("tryAgain", tryAgain);
+            
                 if (projectTitle[i] !== null) {
-                    
+                    tryAgain = i + 1;
+                    localStorage.setItem("tryAgain", tryAgain);
                     pageTracker = i + 1;
                     localStorage.setItem("pageTracker", pageTracker);
                     const proj = addPage(projectTitle[i].pageName);
@@ -305,20 +316,21 @@ window.onload = function() {
                 }
                 pageC = i;
                 
-                
+                //tryAgain should stay the length of the number of projects, but hwo do we append getting the same ids...
             }
+        }
             pageC++;
             localStorage.setItem("pageC", pageC);
-            console.log("Page C is " + pageC);
+
             pageTracker++;
             localStorage.setItem("pageTracker", pageTracker);
             
-            tryAgain = projectTitle.length;
+            tryAgain = projectTitle.length + 1;
             localStorage.setItem("tryAgain", tryAgain);
             
         } else {
             pageC = localStorage.getItem("pageC");
-            tryAgain = localStorage.getItem("tryAGain");
+            tryAgain = localStorage.getItem("tryAgain");
 
         } 
 

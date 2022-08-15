@@ -284,7 +284,7 @@ const taskFactory = (name, desc, date, priority) => {
 
 
         el0.addEventListener('click', function() {
-            // console.log(box.id);
+
             let x = JSON.parse(localStorage.getItem("task"));
             let index = localStorage.getItem("pageC");
             let inner = x[index];
