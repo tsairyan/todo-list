@@ -60,7 +60,9 @@ cancelAdd.addEventListener('click', function() {
 });
 
 //Add Button
-let taskArray = [];
+
+
+let pageC = 0;
 addButton.addEventListener('click', function() {
     const prioritySelect = document.getElementById('priority')
     const priorityOptions = prioritySelect.options[prioritySelect.selectedIndex].text;
@@ -71,9 +73,26 @@ addButton.addEventListener('click', function() {
         
     } else if (errorDisplayed){ //reset fields after
         const item = taskFactory(name.value, desc.value, date.value, priorityOptions);
-        taskArray.push(item);
+        pageC = localStorage.getItem("pageC");
 
+        if (taskArray[pageC] == null) {
+            let innerArr = [];
+          
+            innerArr.push(item);
+            taskArray[pageC] = innerArr;
+
+
+        }
+        else {
+            let taskArray = JSON.parse(localStorage.getItem("task"));
+            let innerArr = taskArray[pageC];
+            innerArr.push(item);
+            taskArray[pageC] = innerArr;
+
+
+        }
         item.addToDom();
+
 
 
         hideErrorMsg();
@@ -84,7 +103,28 @@ addButton.addEventListener('click', function() {
         openTaskContainer.style.display = "flex";
     } else {
         const item = taskFactory(name.value, desc.value, date.value, priorityOptions);
-        taskArray.push(item);
+        pageC = localStorage.getItem("pageC");
+
+        if (taskArray[pageC] == null) {
+            console.log('NO ARRAY' + pageC);
+            let innerArr = [];
+          
+            innerArr.push(item);
+            taskArray[pageC] = innerArr;
+
+
+        }
+        else {
+            console.log('ARRAY' + pageC);
+
+            taskArray = JSON.parse(localStorage.getItem("task"));
+            let innerArr = taskArray[pageC];
+            innerArr.push(item);
+            taskArray[pageC] = innerArr;
+
+
+        }
+
 
         item.addToDom();
 
@@ -197,6 +237,9 @@ newPage.addEventListener('click', function() {
         localStorage.setItem("uProject", JSON.stringify(projectTitle));
         localStorage.setItem("pageTracker", pageTracker);
         pageTracker++;
+
+       
+
         nPage.createPage();
     });
 });
@@ -213,39 +256,25 @@ home.style.color = 'rgb(179, 0, 255)';
 home.style.fontWeight = '700';
 
 
-const allItems = document.querySelector('.allItems');
 
-
-
-
-const lists = document.querySelector('.textContent');
+let taskArray = [];
 
 window.onload = function() {
     if (localStorage.length == 0) {
         //reset tracker to 0
         tempTrack = 0;
         localStorage.setItem("tracker", tempTrack);
+        pageC = 0;
+        localStorage.setItem("pageC", pageC);
+        // let innerArr = [];
+
+        // taskArray[0] = innerArr;
+        // localStorage.setItem("task", JSON.stringify(taskArray));
+
+
 
     } else {
-        var x = JSON.parse(localStorage.getItem(localStorage.key(0)));
-        taskArray = x;
-        console.log(typeof x);
-        
-        for (let i = 0; i < taskArray.length; i++) {
-            if (x[i] !== null) {
-                tempTrack = i;
-                localStorage.setItem("tracker", tempTrack);
-
-                const test = taskFactory(taskArray[i].name, taskArray[i].desc, taskArray[i].date, taskArray[i].priority);
-                test.addToDom();
-            }
-            
-        
-           
-        }
-        tempTrack++;
-        localStorage.setItem("tracker", tempTrack);
-
+     
 
         
 
@@ -264,9 +293,34 @@ window.onload = function() {
             }
             pageTracker++;
             
-            
+
             
         } 
+
+
+        pageC = localStorage.getItem("pageC");
+
+        taskArray = JSON.parse(localStorage.getItem("task"));
+        let inner = taskArray[pageC];
+
+        
+        for (let i = 0; i < inner.length; i++) {
+            if (inner[i] !== null) {
+
+                tempTrack = i;
+                localStorage.setItem("tracker", tempTrack);
+
+                const test = taskFactory(inner[i].name, inner[i].desc, inner[i].date, inner[i].priority);
+                test.addToDom();
+            }
+            
+        
+           
+        }
+        tempTrack++;
+        localStorage.setItem("tracker", tempTrack);
+
+
     }
   
   

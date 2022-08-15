@@ -96,7 +96,7 @@ const addPage = (pageName) => { //takes input field.
                 let temparr = JSON.parse(localStorage.getItem("uProject"));
 
                 temparr[x] = null;
-                console.log(temparr[x] + 'temparr');
+
                 localStorage.setItem("uProject", JSON.stringify(temparr));
 
                 deleteContainer.nextElementSibling.remove();
@@ -132,8 +132,7 @@ const addPage = (pageName) => { //takes input field.
             thePages.forEach(element => {
 
                 element.addEventListener('click', function() {
-                    console.log(thePages);
-                    console.log(curr);
+
 
 
                     if (!pages.includes(document.querySelector('#content').outerHTML)) {
@@ -145,7 +144,9 @@ const addPage = (pageName) => { //takes input field.
                     projectList[curr].style.fontWeight = 'normal';
 
                     curr = element.id;
-                    console.log(curr);
+
+                    let p = curr;
+                    localStorage.setItem("pageC", p);
 
                     projectList[curr].style.color = 'rgb(179, 0, 255)';
                     projectList[curr].style.fontWeight = '700';
@@ -167,25 +168,9 @@ const addPage = (pageName) => { //takes input field.
             })
            
         
-            // const all = document.querySelectorAll('.textContent button');
-            // all.forEach(element => {
-            //     element.addEventListener('click', function() {
-            //         element.previousElementSibling.remove();
-            //         element.remove();
-        
-            //         pages[curr - 1].click();
-            //         curr -= 1;
-        
-                    
-            //     });
-            // })
-
-         
-
-
-    
-
-    // var arr = Array.prototype.slice.call(thePages);
+            let p = localStorage.getItem("pageC");
+            p++;
+            localStorage.setItem("pageC", p);
 
     }
     return {pageName, createPage};

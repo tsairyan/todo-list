@@ -4,7 +4,7 @@ let count = 0;
 
 
 const taskFactory = (name, desc, date, priority) => {
-    console.log(count);
+
     const editContainer = document.createElement('div');
     editContainer.classList.add('editContainer');
     const prioritySelect = document.getElementById('priority')
@@ -206,7 +206,7 @@ const taskFactory = (name, desc, date, priority) => {
                 dateInput.remove();
                 descInput.remove();
                 nameInput.remove();
-                console.log("cancel pressed");
+
                 el0.style.display = 'block';
                 el1.style.display = 'flex';
                 el2.style.display = 'flex';
@@ -230,7 +230,7 @@ const taskFactory = (name, desc, date, priority) => {
                  el3.style.display = 'flex';
                  el4.style.display = 'flex';
                  checkboxContainer.style.display = "flex";
-                 console.log(nameInput.textContent);
+
                  el1.textContent = nameInput.value;
                  el2.textContent = descInput.value;
                  el3.textContent = dateInput.value;
@@ -240,14 +240,21 @@ const taskFactory = (name, desc, date, priority) => {
                 el4.textContent = priorityOptions;
 
                 let itemInStorage = JSON.parse(localStorage.getItem("task"));
-                let actualBox = itemInStorage[index];
+                let projIndex = localStorage.getItem("pageC");
+                let innerItem = itemInStorage[projIndex];
+
+                let actualBox = innerItem[index];
                 actualBox.name = el1.textContent;
                 actualBox.desc = el2.textContent;
                 actualBox.date = date;
                 actualBox.priority = el4.textContent;
+
+                innerItem[index] = actualBox;
+                itemInStorage[projIndex] = innerItem;
+    
                 localStorage.setItem("task", JSON.stringify(itemInStorage));
 
-
+                //inner[index];
 
                 priorityInput.remove();
                 dateInput.remove();
@@ -278,8 +285,11 @@ const taskFactory = (name, desc, date, priority) => {
 
         el0.addEventListener('click', function() {
             // console.log(box.id);
-            let x = JSON.parse(localStorage.getItem(localStorage.key(0)));
-            x[box.id] = null; //if all null || empty, then we don't add in addToDom()
+            let x = JSON.parse(localStorage.getItem("task"));
+            let index = localStorage.getItem("pageC");
+            let inner = x[index];
+            inner[box.id] = null; //if all null || empty, then we don't add in addToDom()
+            x[index] = inner;
             localStorage.setItem("task", JSON.stringify(x));
 
             box.remove();
