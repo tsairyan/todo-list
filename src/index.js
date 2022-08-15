@@ -13,7 +13,7 @@ let errorDisplayed = false;
 let tempTrack = 0;
 let pageTracker = 0;
 
-
+let tryAgain = 1;
 
 allInputs.forEach(element => {
     element.style.display = "none";
@@ -241,6 +241,9 @@ newPage.addEventListener('click', function() {
        
 
         nPage.createPage();
+        tryAgain++;
+        localStorage.setItem("tryAgain", tryAgain);
+        // localStorage.setItem("pageTracker", pageTracker);
     });
 });
 
@@ -266,6 +269,8 @@ window.onload = function() {
         localStorage.setItem("tracker", tempTrack);
         pageC = 0;
         localStorage.setItem("pageC", pageC);
+        tryAgain = 1;
+        localStorage.setItem("tryAgain", tryAgain);
         // let innerArr = [];
 
         // taskArray[0] = innerArr;
@@ -283,44 +288,60 @@ window.onload = function() {
             projectTitle = permProjects;
             
             for (let i = 0; i < projectTitle.length; i++) {
+                tryAgain = i + 1;
+                localStorage.setItem("tryAgain", tryAgain);
                 if (projectTitle[i] !== null) {
-                    pageTracker = i;
+                    
+                    pageTracker = i + 1;
                     localStorage.setItem("pageTracker", pageTracker);
                     const proj = addPage(projectTitle[i].pageName);
                     proj.createPage();
+
+
                 }
-
+                pageC = i;
+                
+                
             }
+            pageC++;
+            localStorage.setItem("pageC", pageC);
+            console.log("Page C is " + pageC);
             pageTracker++;
+            localStorage.setItem("pageTracker", pageTracker);
             
+            tryAgain = projectTitle.length;
+            localStorage.setItem("tryAgain", tryAgain);
+            
+        } else {
+            pageC = localStorage.getItem("pageC");
+            tryAgain = localStorage.getItem("tryAGain");
 
-            
         } 
 
 
-        pageC = localStorage.getItem("pageC");
 
         taskArray = JSON.parse(localStorage.getItem("task"));
-        let inner = taskArray[pageC];
 
-        
-        for (let i = 0; i < inner.length; i++) {
-            if (inner[i] !== null) {
+        if (taskArray[pageC] != null) {
+            let inner = taskArray[pageC];
 
-                tempTrack = i;
-                localStorage.setItem("tracker", tempTrack);
+            for (let i = 0; i < inner.length; i++) {
+                if (inner[i] !== null) {
 
-                const test = taskFactory(inner[i].name, inner[i].desc, inner[i].date, inner[i].priority);
-                test.addToDom();
-            }
+                    tempTrack = i;
+                    localStorage.setItem("tracker", tempTrack);
+
+                    const test = taskFactory(inner[i].name, inner[i].desc, inner[i].date, inner[i].priority);
+                    test.addToDom();
+                }
+                
             
-        
-           
+            
+            }
+            tempTrack++;
+            localStorage.setItem("tracker", tempTrack);
+
         }
-        tempTrack++;
-        localStorage.setItem("tracker", tempTrack);
-
-
     }
   
   

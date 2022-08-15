@@ -1,3 +1,4 @@
+import taskFactory from "./item";
 //stores everything that is on the page??
 
 //create a function that stores all the dom elements into an array as an object????
@@ -27,9 +28,9 @@ const addPage = (pageName) => { //takes input field.
         const lists = document.querySelector('.textContent');
         const page = document.createElement('p');
         page.textContent = pageNameToCreate;
-        page.setAttribute('id', tracker);
+        page.setAttribute('id', localStorage.getItem("tryAgain"));
         page.classList.add('a');
-        tracker++;
+
 
        
 
@@ -44,29 +45,18 @@ const addPage = (pageName) => { //takes input field.
         temp.setAttribute('id', 'content');
         allItems.appendChild(temp);
 
-        projectList[curr].style.fontWeight = 'normal';
-        projectList[curr].style.color = 'white';
+        // projectList[curr].style.fontWeight = 'normal';
+        // projectList[curr].style.color = 'white';
         curr = pages.length; //curr value gets moved to new page index
 
        
-
-        
-        
-            // page.addEventListener('click', function() {
-            //     pages.push(document.querySelector('#content'));
-            //     curr = page.id;
-            //     while (allItems.firstChild) {
-            //         allItems.removeChild(allItems.firstChild);
-            //     }
-            //     allItems.appendChild(pages[curr]); 
-            // })
-
             //After clicking on the element it doesnt work
             const deleteContainer = document.createElement('div');
-            deleteContainer.setAttribute('id', JSON.parse(localStorage.getItem("pageTracker")));
+            deleteContainer.setAttribute('id', localStorage.getItem("tryAgain"));
 
             const deletePage = document.createElement('button');
-            deletePage.setAttribute('id', page.id);
+            deletePage.setAttribute('id', localStorage.getItem("tryAgain"));
+            tracker++;
             deletePage.classList.add('delBut');
 
             const cancelSVG1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -87,26 +77,32 @@ const addPage = (pageName) => { //takes input field.
                 } 
 
                 curr = deleteContainer.previousElementSibling.id;
-                projectList[curr].style.fontWeight = '700';
-                projectList[curr].style.color = 'rgb(179, 0, 255)';
+                // projectList[curr].style.fontWeight = '700';
+                // projectList[curr].style.color = 'rgb(179, 0, 255)';
 
 
-                let x = (deleteContainer.id);
-                
+                let x = (localStorage.getItem("pageC"));
+
+
                 let temparr = JSON.parse(localStorage.getItem("uProject"));
 
-                temparr[x] = null;
+                temparr[x - 1] = null;
 
                 localStorage.setItem("uProject", JSON.stringify(temparr));
 
                 deleteContainer.nextElementSibling.remove();
-                deleteContainer.remove();
-                while (allItems.firstChild) {
-                    allItems.removeChild(allItems.firstChild);
-                }
-
-                allItems.innerHTML = pages[curr]; 
                 
+                deleteContainer.remove();
+
+                document.querySelector(".home").click();
+
+                
+
+
+                
+                let pageC = curr;
+
+                localStorage.setItem("pageC", pageC);
    
                 //i want to remove the element from the dom, but not from the arraylist
 
@@ -118,9 +114,9 @@ const addPage = (pageName) => { //takes input field.
             lists.appendChild(deleteContainer);
             deleteContainer.appendChild(deletePage);  
             lists.appendChild(page);
-            projectList.push(page);
-            projectList[curr].style.fontWeight = '700';
-            projectList[curr].style.color = 'rgb(179, 0, 255)';
+            // projectList.push(page);
+            // projectList[curr].style.fontWeight = '700';
+            // projectList[curr].style.color = 'rgb(179, 0, 255)';
 
 
             
@@ -128,6 +124,8 @@ const addPage = (pageName) => { //takes input field.
             // const delBut = document.createElement('button');
             // lists.appendChild(delBut);
 
+
+            //we remove everything in dom, then we call the taskFactory thing again with the saved stuff we have in localstorage
             const thePages = document.querySelectorAll('.textContent p');
             thePages.forEach(element => {
 
@@ -135,27 +133,42 @@ const addPage = (pageName) => { //takes input field.
 
 
 
-                    if (!pages.includes(document.querySelector('#content').outerHTML)) {
-                        pages.push(document.querySelector('#content').outerHTML);
-                    }
+            
 
                     
-                    projectList[curr].style.color = 'white';
-                    projectList[curr].style.fontWeight = 'normal';
+                    // projectList[curr].style.color = 'white';
+                    // projectList[curr].style.fontWeight = 'normal';
 
                     curr = element.id;
 
+
                     let p = curr;
+                    console.log(p);
                     localStorage.setItem("pageC", p);
 
-                    projectList[curr].style.color = 'rgb(179, 0, 255)';
-                    projectList[curr].style.fontWeight = '700';
+                    // projectList[curr].style.color = 'rgb(179, 0, 255)';
+                    // projectList[curr].style.fontWeight = '700';
 
-                    while (allItems.firstChild) {
-                        allItems.removeChild(allItems.firstChild);
+                    while (content.firstChild) {
+                        content.removeChild(content.firstChild);
                     }
-                    allItems.innerHTML = pages[curr];
 
+                    let outerArr = JSON.parse(localStorage.getItem("task"));
+                    let innerArray = outerArr[p];
+
+                    let tempTrack = 0;
+                if (innerArray != null) {
+                    for (let i = 0; i < innerArray.length; i++) {
+                        if (innerArray[i] != null) {
+                            tempTrack = i;
+                            localStorage.setItem("tracker", tempTrack);
+                            const test = taskFactory(innerArray[i].name, innerArray[i].desc, innerArray[i].date, innerArray[i].priority);
+                            test.addToDom();
+                        }
+                    }
+                    tempTrack++;
+                    localStorage.setItem("tracker", tempTrack);
+                }
 
 
 
